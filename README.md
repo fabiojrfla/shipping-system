@@ -1,24 +1,37 @@
 # README
+## Sistema de entregas desenvolvido durante o TreinaDev 8 da Campus Code.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A aplicação web é responsável por gerenciar meios de transporte disponíveis para e-commerces. O sistema é desenvolvido em Ruby on Rails utilizando testes com as gems [RSpec](https://github.com/rspec/rspec-rails) e [Capybara](https://github.com/teamcapybara/capybara). O banco dados é o SQLite.
 
-Things you may want to cover:
+### Versões
+- Ruby 3.1.2
+- Rails 7.0.3
 
-* Ruby version
+### Executando o projeto
+1. Clone o projeto
+  ```
+  git clone https://github.com/fabiojrfla/shipping-system.git
+  ```
+2. Entre na pasta e instale as dependências
+  ```
+  bundle install
+  ```
+3. Inicie o servidor web
+  ```
+  rails server
+  ```
 
-* System dependencies
+### Executando os testes
+- Execute todos os testes
+  ```
+  rspec
+  ```
+- Ou execute testes de pastas ou arquivos específicos dentro da pasta ***spec***. Por exemplo:
+  ```
+  rspec spec/system
+  ```
 
-* Configuration
+### Quadro de projeto
+Disponível em:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[GitHub.com/FabioJrFla/Projetos/Sistema-de-Frete](https://github.com/users/fabiojrfla/projects/1/views/1?layout=board)
