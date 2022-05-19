@@ -1,4 +1,4 @@
-# README
+# Sistema de Frete
 ## Sistema de entregas desenvolvido durante o TreinaDev 8 da Campus Code.
 
 A aplicação web é responsável por gerenciar meios de transporte disponíveis para e-commerces. O sistema é desenvolvido em Ruby on Rails utilizando testes com as gems [RSpec](https://github.com/rspec/rspec-rails) e [Capybara](https://github.com/teamcapybara/capybara). O banco dados é o SQLite.
@@ -7,7 +7,11 @@ A aplicação web é responsável por gerenciar meios de transporte disponíveis
 - Ruby 3.1.2
 - Rails 7.0.3
 
-### Executando o projeto
+# Dependências
+- ***Devise***: A *gem* é uma solução flexível e segura para gerenciar a autenticação da aplicação, utilizada por ser bem mais prática, eficiente e segura do que desenvolver uma solução própria.
+
+
+# Executando o projeto
 1. Clone o projeto
   ```
   git clone https://github.com/fabiojrfla/shipping-system.git
@@ -21,7 +25,7 @@ A aplicação web é responsável por gerenciar meios de transporte disponíveis
   rails server
   ```
 
-### Executando os testes
+# Executando os testes
 - Execute todos os testes
   ```
   rspec
@@ -31,7 +35,7 @@ A aplicação web é responsável por gerenciar meios de transporte disponíveis
   rspec spec/system
   ```
 
-### Quadro de projeto
+# Quadro de projeto
 Disponível em:
 
-[GitHub.com/FabioJrFla/Projetos/Sistema-de-Frete](https://github.com/users/fabiojrfla/projects/1/views/1?layout=board)
+[GitHub.com/FabioJrFla/Projects/Shipping-System](https://github.com/users/fabiojrfla/projects/1/views/1?layout=board)
