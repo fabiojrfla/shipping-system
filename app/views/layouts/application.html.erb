@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShippingSystem</title>
+    <title>Sistema de Frete</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,16 @@
   </head>
 
   <body>
+  <header>
+    <h1>Sistema de Frete</h1>
+    <nav>
+      <ul>
+        <li><%= link_to 'Página inicial', root_path %></li>
+        <li><%= link_to 'Rastreamento', root_path %></li>
+        <li><%= link_to 'Entrar', root_path %></li>
+      </ul>
+    </nav>
+  </header>
     <%= yield %>
   </body>
 </html>
