@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      admin:
+        name: 'Nome'
+        surname: 'Sobrenome'

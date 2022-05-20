@@ -15,7 +15,8 @@ describe 'Visitante acessa tela inicial' do
     within('nav') do
       expect(page).to have_content 'Página inicial'
       expect(page).to have_content 'Rastreamento'
-      expect(page).to have_content 'Entrar'
+      expect(page).to have_content 'Sou Transportadora'
+      expect(page).to have_content 'Sou Administrador'
     end
   end
 end
