@@ -20,7 +20,15 @@ A aplicação web é responsável por gerenciar meios de transporte disponíveis
   ```
   bundle install
   ```
-3. Inicie o servidor web
+3. Execute as migrações
+  ```
+  rails db:migrate
+  ```
+4. Adicione dados ao banco
+  ```
+  rails db:seed
+  ```
+5. Inicie o servidor web
   ```
   rails server
   ```
