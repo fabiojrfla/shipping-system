@@ -6,9 +6,9 @@ describe 'Usuário se cadastra como Admin' do
     within('nav') do
       click_on 'Sou Administrador'
     end
-    click_on 'Criar uma conta'
+    click_on 'Criar conta'
 
-    expect(page).to have_content 'Crie sua conta'
+    expect(page).to have_content 'Criar conta'
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Sobrenome'
     expect(page).to have_field 'E-mail'

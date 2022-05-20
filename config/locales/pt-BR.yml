@@ -1,2 +1,5 @@
 pt-BR:
   hello: 'Olá mundo'
+  Sign up: 'Criar conta'
+  characters minimum: 'caracteres no mínimo'
+  Log in: 'Entrar'
