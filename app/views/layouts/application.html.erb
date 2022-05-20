@@ -13,12 +13,15 @@
   <header>
     <h1>Sistema de Frete</h1>
     <nav>
-      <ul>
-        <li><%= link_to 'Página inicial', root_path %></li>
-        <li><%= link_to 'Rastreamento', root_path %></li>
-        <li><%= link_to 'Sou Transportadora', root_path %></li>
-        <li><%= link_to 'Sou Administrador',  new_admin_session_path %></li>
-      </ul>
+      <% if admin_signed_in? %>
+        <%= current_admin.name %> <%= current_admin.surname %> |
+        <%= current_admin.email %> |
+      <% else %>
+        <%= link_to 'Página inicial', root_path %> |
+        <%= link_to 'Rastreamento', root_path %> |
+        <%= link_to 'Sou Transportadora', root_path %> |
+        <%= link_to 'Sou Administrador',  new_admin_session_path %> |
+      <% end %>
     </nav>
   </header>
   <main>
