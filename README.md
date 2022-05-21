@@ -27,6 +27,7 @@ A aplicação web é responsável por gerenciar meios de transporte disponíveis
 4. Adicione dados ao banco
   ```
   rails db:seed
+  #Os dados podem ser acessados no arquivo db/seeds.rb
   ```
 5. Inicie o servidor web
   ```
