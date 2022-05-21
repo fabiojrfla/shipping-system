@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      shipping_company: 'Transportadora'
+    attributes:
+      shipping_company:
+        registration_number: 'CNPJ'
+        corporate_name: 'Razão Social'
+        brand_name: 'Nome Fantasia'
+        street_name: 'Logradouro'
+        street_number: 'Número'
+        complement: 'Complemento'
+        district: 'Bairro'
+        city: 'Cidade'
+        state: 'Estado'
+        postal_code: 'CEP'
+        phone_number: 'Telefone'
