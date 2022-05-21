@@ -1,4 +1,6 @@
 class ShippingCompaniesController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @shipping_companies = ShippingCompany.all
   end
