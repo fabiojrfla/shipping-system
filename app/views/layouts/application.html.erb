@@ -16,6 +16,7 @@
       <% if admin_signed_in? %>
         <%= current_admin.name %> <%= current_admin.surname %> |
         <%= current_admin.email %> |
+        <%= button_to 'Sair' %>
       <% else %>
         <%= link_to 'Página inicial', root_path %> |
         <%= link_to 'Rastreamento', root_path %> |
