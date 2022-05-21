@@ -1,2 +1,10 @@
 <h2>Nova Transportadora</h2>
+<% if @shipping_company.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @shipping_company.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= render 'form' %>

@@ -14,7 +14,7 @@ describe 'Administrador vê transportadoras' do
                             street_name: 'Avenida Alberto Maranhão', street_number: '100', complement: 'Galpão 10',
                             district: 'Centro', city: 'Fortaleza', state: 'CE', postal_code: '60010010')
 
-    login_as(admin, :scope => :admin)
+    login_as(admin, scope: :admin)
     visit admin_root_path
     click_on 'Transportadoras'
 
