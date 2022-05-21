@@ -8,7 +8,6 @@ describe 'Administrador se autentica' do
     within('nav') do
       click_on 'Sou Administrador'
     end
-    click_on 'Entrar'
     within('form') do
       fill_in 'E-mail', with: 'vito@sistemadefrete.com.br'
       fill_in 'Senha', with: 'whatshisname'
@@ -34,7 +33,6 @@ describe 'Administrador se autentica' do
     within('nav') do
       click_on 'Sou Administrador'
     end
-    click_on 'Entrar'
     within('form') do
       fill_in 'E-mail', with: 'vito@sistemadefrete.com.br'
       fill_in 'Senha', with: 'whatshisname'

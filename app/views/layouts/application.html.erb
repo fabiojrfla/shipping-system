@@ -14,6 +14,7 @@
     <h1>Sistema de Frete</h1>
     <nav>
       <% if admin_signed_in? %>
+        <%= link_to 'Painel Administrativo', admin_root_path %> |
         <%= current_admin.name %> <%= current_admin.surname %> |
         <%= current_admin.email %> |
         <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
@@ -29,6 +30,12 @@
     <div>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+    </div>
+    <div>
+      <%= flash[:success] %>
+    </div>
+    <div>
+      <%= flash[:error] %>
     </div>
     <%= yield %>
   </main>
