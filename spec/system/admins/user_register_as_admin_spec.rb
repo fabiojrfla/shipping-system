@@ -31,10 +31,10 @@ describe 'Usuário se cadastra como Administrador' do
 
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
     within('nav') do
-      expect(page).not_to have_content 'Sou Transportadora'
-      expect(page).not_to have_content 'Sou Administrador'
       expect(page).to have_content 'Vito Corleone'
       expect(page).to have_content 'vito@sistemadefrete.com.br'
+      expect(page).not_to have_content 'Sou Transportadora'
+      expect(page).not_to have_content 'Sou Administrador'
     end
   end
 
