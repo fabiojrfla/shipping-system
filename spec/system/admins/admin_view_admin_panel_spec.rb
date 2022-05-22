@@ -14,6 +14,7 @@ describe 'Administrador vê painel administrativo' do
     login_as(admin, scope: :admin)
     visit admin_root_path
 
+    expect(page).to have_content 'Painel Administrativo'
     expect(page).to have_link 'Transportadoras'
   end
 end
