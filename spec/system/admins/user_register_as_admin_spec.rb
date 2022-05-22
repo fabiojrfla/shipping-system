@@ -8,6 +8,7 @@ describe 'Usuário se cadastra como Administrador' do
     end
     click_on 'Criar conta'
 
+    expect(current_path).to eq new_admin_registration_path
     expect(page).to have_content 'Criar conta'
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Sobrenome'
@@ -21,7 +22,6 @@ describe 'Usuário se cadastra como Administrador' do
       click_on 'Sou Administrador'
     end
     click_on 'Criar conta'
-
     fill_in 'Nome', with: 'Vito'
     fill_in 'Sobrenome', with: 'Corleone'
     fill_in 'E-mail', with: 'vito@sistemadefrete.com.br'
