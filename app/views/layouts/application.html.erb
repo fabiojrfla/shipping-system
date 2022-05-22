@@ -19,7 +19,7 @@
         <%= current_admin.email %> |
         <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
       <% elsif user_signed_in? %>
-        <%= link_to 'Painel', panel_root_path %> |
+        <%= link_to 'Painel', user_root_path %> |
         <%= current_user.name %> <%= current_user.surname %> |
         <%= current_user.email %> |
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>

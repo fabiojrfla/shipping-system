@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário vê painel inicial' do
   it 'se estiver autenticado' do
-    visit panel_root_path
+    visit user_root_path
 
     expect(current_path).to eq new_user_session_path
   end
@@ -15,8 +15,9 @@ describe 'Usuário vê painel inicial' do
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
 
     login_as(user, scope: :user)
-    visit panel_root_path
+    visit user_root_path
 
     expect(page).to have_content 'Painel'
+    expect(page).to have_content 'Transportadora TransLight'
   end
 end
