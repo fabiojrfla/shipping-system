@@ -5,7 +5,7 @@ ShippingCompany.create!(registration_number: '12345678000102', corporate_name: '
                         street_name: 'Avenida Felipe Camarão', street_number: '100', complement: 'Galpão 10',
                         district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
 ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
-                        brand_name: 'TransLight', email: 'contato@translight.com.br',
+                        brand_name: 'TransLight', email: 'contato@translight.com.br', status: 'inactive',
                         street_name: 'Avenida Alberto Maranhão', street_number: '100', complement: 'Galpão 10',
                         district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000000')
 

@@ -104,4 +104,21 @@ describe 'Administrador vê detalhes de uma transportadora' do
       expect(page).not_to have_content 'Mossoró/RN'
     end
   end
+
+  it 'e volta pra tela de transportadoras' do
+    admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
+                          password: 'whatshisname')
+    ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
+                            brand_name: 'TExpress', email: 'contato@texpress.com.br',
+                            street_name: 'Avenida Felipe Camarão', street_number: '100', complement: 'Galpão 10',
+                            district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
+
+    login_as(admin, scope: :admin)
+    visit admin_root_path
+    click_on 'Transportadoras'
+    click_on 'TExpress'
+    click_on 'Voltar'
+
+    expect(current_path).to eq shipping_companies_path
+  end
 end
