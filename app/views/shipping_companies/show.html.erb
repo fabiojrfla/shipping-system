@@ -1,0 +1,24 @@
+<h2>Transportadora: <%= @shipping_company.brand_name %></h2>
+<h3><%= @shipping_company.corporate_name %></h3>
+<div>
+  <dl>
+    <dt><strong>CNPJ:</strong></dt>
+    <dd><%= @shipping_company.registration_number %></dd>
+    <dt><strong>Endereço:</strong></dt>
+    <dd><%= @shipping_company.street_name %>, <%= @shipping_company.street_number %>,
+        <%= @shipping_company.complement %>, bairro <%= @shipping_company.district %>,
+        <%= @shipping_company.city %>/<%= @shipping_company.state %></dd>
+    <dt><strong>CEP:</strong></dt>
+    <dd><%= @shipping_company.postal_code %></dd>
+    <dt><strong>Email:</strong></dt>
+    <dd><%= @shipping_company.email %></dd>
+  </dl>
+</div>
+<div>
+  <% if @shipping_company.active? %>
+    <%= button_to 'Desativar Transportadora', deactivate_shipping_company_path, method: :patch %>
+  <% end %>
+  <% if @shipping_company.inactive? %>
+    <%= button_to 'Ativar Transportadora', activate_shipping_company_path, method: :patch %>
+  <% end %>
+</div>

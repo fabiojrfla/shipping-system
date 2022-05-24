@@ -22,13 +22,14 @@ describe 'Administrador cadastra uma transportadora' do
     fill_in 'CEP', with: '59000000'
     click_on 'Criar Transportadora'
 
-    expect(current_path).to eq shipping_companies_path
+    expect(current_path).to eq shipping_company_path(ShippingCompany.last[:id])
     expect(page).to have_content 'Transportadora cadastrada com sucesso!'
-    within('table') do
-      expect(page).to have_content '12345678000102'
-      expect(page).to have_content 'TExpress'
-      expect(page).to have_content 'Mossoró/RN'
-    end
+    expect(page).to have_content 'Transportadora: TExpress'
+    expect(page).to have_content 'Transporte Expresso LTDA'
+    expect(page).to have_content 'CNPJ: 12345678000102'
+    expect(page).to have_content 'Endereço: Avenida Felipe Camarão, 100, Galpão 10, bairro Industrial, Mossoró/RN'
+    expect(page).to have_content 'CEP: 59000000'
+    expect(page).to have_content 'Email: contato@texpress.com.br'
   end
 
   it 'com dados incompletos' do
