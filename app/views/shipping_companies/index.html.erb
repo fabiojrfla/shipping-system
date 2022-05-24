@@ -1,25 +1,53 @@
 <h2>Transportadoras</h2>
-<% if @shipping_companies.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>CNPJ</th>
-        <th>Nome Fantasia</th>
-        <th>Localização</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @shipping_companies.each do |shipping_company| %>
-      <tr>
-        <td><%= shipping_company.registration_number %></td>
-        <td><%= shipping_company.brand_name %></td>
-        <td><%= shipping_company.city %>/<%= shipping_company.state %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
+<% if @active_shipping_companies.empty? && @inactive_shipping_companies.empty? %>
   <p>Não existem transportadoras cadastradas</p>
+<% else %>
+  <% if @active_shipping_companies.any? %>
+    <section id="active-shipping-companies">
+      <h3>Ativas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>CNPJ</th>
+            <th>Nome Fantasia</th>
+            <th>Localização</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @active_shipping_companies.each do |shipping_company| %>
+          <tr>
+            <td><%= shipping_company.registration_number %></td>
+            <td><%= link_to shipping_company.brand_name, shipping_company %></td>
+            <td><%= shipping_company.city %>/<%= shipping_company.state %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </section>
+  <% end %>
+  <% if @inactive_shipping_companies.any? %>
+    <section id="inactive-shipping-companies">
+      <h3>Inativas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>CNPJ</th>
+            <th>Nome Fantasia</th>
+            <th>Localização</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @inactive_shipping_companies.each do |shipping_company| %>
+          <tr>
+            <td><%= shipping_company.registration_number %></td>
+            <td><%= link_to shipping_company.brand_name, shipping_company %></td>
+            <td><%= shipping_company.city %>/<%= shipping_company.state %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </section>
+  <% end %>
 <% end %>
 <div>
   <%= link_to 'Nova Transportadora', new_shipping_company_path %>
