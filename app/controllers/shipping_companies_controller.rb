@@ -1,5 +1,6 @@
 class ShippingCompaniesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_shipping_company, only: %i[show deactivate activate]
 
   def index
     @active_shipping_companies = ShippingCompany.where(status: 'active')
@@ -20,14 +21,28 @@ class ShippingCompaniesController < ApplicationController
 
     if @shipping_company.save
       flash[:success] = 'Transportadora cadastrada com sucesso!'
-      redirect_to shipping_companies_path
+      redirect_to @shipping_company
     else
       flash.now[:error] = 'Dados incompletos...'
       render 'new'
     end
   end
 
-  def show
+  def show; end
+
+  def deactivate
+    @shipping_company.inactive!
+    redirect_to shipping_companies_path
+  end
+
+  def activate
+    @shipping_company.active!
+    redirect_to shipping_companies_path
+  end
+
+  private
+
+  def set_shipping_company
     @shipping_company = ShippingCompany.find(params[:id])
   end
 end

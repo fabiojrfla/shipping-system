@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'home#index'
   end
-  resources :shipping_companies, only: %i[index new create]
+  resources :shipping_companies, only: %i[index new create show] do
+    patch 'deactivate', on: :member
+    patch 'activate', on: :member
+  end
 end
