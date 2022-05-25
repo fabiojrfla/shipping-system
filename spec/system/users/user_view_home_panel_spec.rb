@@ -33,5 +33,6 @@ describe 'Usuário vê painel inicial' do
 
     expect(page).to have_content 'Transportadora: TransLight'
     expect(page).to have_content '[Inativa]'
+    expect(page).to have_content 'Tabela de Preços'
   end
 end

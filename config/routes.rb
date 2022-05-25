@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     patch 'deactivate', on: :member
     patch 'activate', on: :member
   end
+  resources :shipping_prices, only: %i[index new create]
 end
