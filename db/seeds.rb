@@ -23,3 +23,4 @@ ShippingPrice.create!(start_volume: 50, end_volume: 100, start_weight: 10, end_w
                       price_km: 2, shipping_company: second_sc)
 
 MinShippingPrice.create!(start_distance: 0, end_distance: 100, price: 100, shipping_company: first_sc)
+MinShippingPrice.create!(start_distance: 100, end_distance: 200, price: 150, shipping_company: second_sc)
