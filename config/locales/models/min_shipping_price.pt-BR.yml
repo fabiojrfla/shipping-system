@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      min_shipping_price: 'Preço mínimo'
+    attributes:
+      min_shipping_price:
+        start_distance: 'Distância Inicial (km)'
+        end_distance: 'Distância Final (km)'
+        price: 'Valor (R$)'

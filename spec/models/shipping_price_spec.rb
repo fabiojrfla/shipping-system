@@ -71,7 +71,7 @@ RSpec.describe ShippingPrice, type: :model do
                                      state: 'RN', postal_code: '59000000')
         ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 0, end_weight: 10, price_km: 0.50,
                               shipping_company: sc)
-        shipping_price = ShippingPrice.new(start_volume: 0, end_volume: 50, start_weight: 11, end_weight: 20,
+        shipping_price = ShippingPrice.new(start_volume: 0, end_volume: 50, start_weight: 10, end_weight: 30,
                                            price_km: 1, shipping_company: sc)
 
         expect(shipping_price.valid?).to eq true
@@ -85,7 +85,7 @@ RSpec.describe ShippingPrice, type: :model do
                                      state: 'RN', postal_code: '59000000')
         ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 0, end_weight: 10, price_km: 0.50,
                               shipping_company: sc)
-        shipping_price = ShippingPrice.new(start_volume: 51, end_volume: 100, start_weight: 0, end_weight: 10,
+        shipping_price = ShippingPrice.new(start_volume: 50, end_volume: 100, start_weight: 0, end_weight: 10,
                                            price_km: 1, shipping_company: sc)
 
         expect(shipping_price.valid?).to eq true

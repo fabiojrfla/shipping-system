@@ -13,4 +13,5 @@ Rails.application.routes.draw do
     patch 'activate', on: :member
   end
   resources :shipping_prices, only: %i[index new create]
+  resources :min_shipping_prices, only: %i[new create]
 end

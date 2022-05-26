@@ -15,7 +15,11 @@ User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br'
 
 ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 0, end_weight: 10, price_km: 0.50,
                       shipping_company: first_sc)
-ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 11, end_weight: 20,
+ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 10, end_weight: 30,
                       price_km: 1, shipping_company: second_sc)
-ShippingPrice.create!(start_volume: 51, end_volume: 100, start_weight: 0, end_weight: 10,
+ShippingPrice.create!(start_volume: 50, end_volume: 100, start_weight: 0, end_weight: 10,
                       price_km: 1, shipping_company: first_sc)
+ShippingPrice.create!(start_volume: 50, end_volume: 100, start_weight: 10, end_weight: 30,
+                      price_km: 2, shipping_company: second_sc)
+
+MinShippingPrice.create!(start_distance: 0, end_distance: 100, price: 100, shipping_company: first_sc)

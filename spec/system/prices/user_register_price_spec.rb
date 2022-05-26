@@ -11,7 +11,9 @@ describe 'Usuário cadastra preços' do
     login_as(user, scope: :user)
     visit user_root_path
     click_on 'Tabela de Preços'
-    click_on 'Novo Preço'
+    within('section#prices-per-item') do
+      click_on 'Novo Preço'
+    end
     fill_in 'Volume Inicial (cm³)', with: '0'
     fill_in 'Volume Final (cm³)', with: '50'
     fill_in 'Peso Inicial (kg)', with: '0'
@@ -38,7 +40,9 @@ describe 'Usuário cadastra preços' do
     login_as(user, scope: :user)
     visit user_root_path
     click_on 'Tabela de Preços'
-    click_on 'Novo Preço'
+    within('section#prices-per-item') do
+      click_on 'Novo Preço'
+    end
     fill_in 'Volume Inicial (cm³)', with: '0'
     fill_in 'Volume Final (cm³)', with: ''
     fill_in 'Peso Inicial (kg)', with: '0'
@@ -71,7 +75,9 @@ describe 'Usuário cadastra preços' do
     login_as(user, scope: :user)
     visit user_root_path
     click_on 'Tabela de Preços'
-    click_on 'Novo Preço'
+    within('section#prices-per-item') do
+      click_on 'Novo Preço'
+    end
     fill_in 'Volume Inicial (cm³)', with: '31'
     fill_in 'Volume Final (cm³)', with: '60'
     fill_in 'Peso Inicial (kg)', with: '6'

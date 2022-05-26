@@ -20,7 +20,7 @@ class ShippingPrice < ApplicationRecord
     return unless shipping_company
 
     shipping_company.shipping_prices.pluck(start_range, end_range).detect do |s, e|
-      (s..e).include?(attr_value)
+      (s...e).include?(attr_value)
     end
   end
 
