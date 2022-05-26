@@ -14,7 +14,19 @@ RSpec.describe User, type: :model do
       expect(user.errors.include?(:surname)).to eq true
     end
 
-    it 'Domínio de e-mail deve ser o mesmo de uma transportadora cadastrada' do
+    it 'se domínio de e-mail for o mesmo de uma transportadora cadastrada' do
+      ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
+                              brand_name: 'TExpress', email: 'contato@texpress.com.br',
+                              street_name: 'Avenida Felipe Camarão', street_number: '100', complement: 'Galpão 10',
+                              district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
+      user = User.new(email: 'walter@texpress.com.br')
+
+      user.valid?
+
+      expect(user.errors.include?(:email)).to eq false
+    end
+
+    it 'domínio de e-mail deve ser o mesmo de uma transportadora cadastrada' do
       ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
                               brand_name: 'TExpress', email: 'contato@texpress.com.br',
                               street_name: 'Avenida Felipe Camarão', street_number: '100', complement: 'Galpão 10',

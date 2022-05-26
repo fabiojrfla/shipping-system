@@ -13,10 +13,12 @@ class ShippingPricesController < ApplicationController
     @shipping_price.shipping_company = current_user.shipping_company
 
     if @shipping_price.save
-      flash[:success] = 'ShippingPrice successfully created'
+      flash[:success] = 'Preço cadastrado com sucesso!'
       redirect_to shipping_prices_path
     else
-      flash[:error] = 'Something went wrong'
+      @shipping_price.start_weight = ''
+      @shipping_price.end_weight = ''
+      flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end
   end

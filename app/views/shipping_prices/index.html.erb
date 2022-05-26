@@ -14,7 +14,7 @@
       <% @shipping_prices.each do |shipping_price| %>
       <tr>
         <td><%= shipping_price.start_volume %>-<%= shipping_price.end_volume %></td>
-        <td><%= shipping_price.start_weight %>-<%= shipping_price.end_weight %></td>
+        <td><%= shipping_price.start_weight.fdiv(1000).to_i %>-<%= shipping_price.end_weight.fdiv(1000).to_i %></td>
         <td><%= number_to_currency(shipping_price.price_km) %></td>
       </tr>
       <% end %>

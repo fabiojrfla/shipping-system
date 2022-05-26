@@ -44,7 +44,7 @@ describe 'Usuário se cadastra' do
     expect(User.last.shipping_company).to eq ShippingCompany.last
   end
 
-  it 'com dados incompletos' do
+  it 'com dados inválidos' do
     visit root_path
     within('nav') do
       click_on 'Sou Transportadora'

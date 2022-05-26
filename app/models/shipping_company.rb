@@ -1,4 +1,6 @@
 class ShippingCompany < ApplicationRecord
+  has_many :shipping_prices
+
   enum status: { active: 5, inactive: 10 }
 
   validates :registration_number, :corporate_name, :brand_name, :email, :street_name, :street_number, :district, :city,

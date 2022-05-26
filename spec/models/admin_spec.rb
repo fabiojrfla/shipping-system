@@ -14,7 +14,13 @@ RSpec.describe Admin, type: :model do
       expect(admin.errors.include?(:surname)).to eq true
     end
 
-    it 'Domínio de e-mail deve ser @sistemadefrete.com.br' do
+    it 'se domínio de e-mail for @sistemadefrete.com.br' do
+      admin = Admin.new(email: 'vito@sistemadefrete.com.br')
+      admin.valid?
+      expect(admin.errors.include?(:email)).to eq false
+    end
+
+    it 'domínio de e-mail deve ser @sistemadefrete.com.br' do
       admin = Admin.new(email: 'vito@thegodfather.com')
       admin.valid?
       expect(admin.errors.include?(:email)).to eq true

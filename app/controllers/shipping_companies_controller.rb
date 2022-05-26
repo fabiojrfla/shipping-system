@@ -23,7 +23,7 @@ class ShippingCompaniesController < ApplicationController
       flash[:success] = 'Transportadora cadastrada com sucesso!'
       redirect_to @shipping_company
     else
-      flash.now[:error] = 'Dados incompletos...'
+      flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end
   end

@@ -156,11 +156,14 @@ RSpec.describe ShippingCompany, type: :model do
       it 'deve ficar ativo' do
         shipping_company = ShippingCompany.create!(registration_number: '12345678000102',
                                                    corporate_name: 'Transporte Expresso LTDA', brand_name: 'TExpress',
-                                                   email: 'contato@texpress.com.br', status: 'inactive',
+                                                   email: 'contato@texpress.com.br',
                                                    street_name: 'Avenida Felipe Camarão', street_number: '100',
                                                    complement: 'Galpão 10', district: 'Industrial', city: 'Mossoró',
                                                    state: 'RN', postal_code: '59000000')
+        shipping_company.inactive!
+
         shipping_company.active!
+
         expect(shipping_company.active?).to eq true
       end
     end
