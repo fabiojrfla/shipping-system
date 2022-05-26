@@ -1,6 +1,7 @@
 class ShippingCompany < ApplicationRecord
   has_many :shipping_prices
   has_many :min_shipping_prices
+  has_many :shipping_deadlines
 
   enum status: { active: 5, inactive: 10 }
 

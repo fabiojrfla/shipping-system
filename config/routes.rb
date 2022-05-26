@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
   resources :shipping_prices, only: %i[index new create]
   resources :min_shipping_prices, only: %i[new create]
+  resources :shipping_deadlines, only: %i[index new create]
 end

@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      shipping_deadline: 'Prazo'
+    attributes:
+      shipping_deadline:
+        start_distance: 'Distância Inicial (km)'
+        end_distance: 'Distância Final (km)'
+        deadline: 'Dias Úteis'

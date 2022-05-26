@@ -1,0 +1,24 @@
+<h2>Tabela de Prazos</h2>
+<% if @shipping_deadlines.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Distância (km)</th>
+        <th>Dias úteis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipping_deadlines.each do |shipping_deadline| %>
+      <tr>
+        <td><%= shipping_deadline.start_distance %>-<%= shipping_deadline.end_distance %>km</td>
+        <td><%= shipping_deadline.deadline %> dias úteis</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem prazos cadastrados</p>
+<% end %>
+<div>
+  <%= link_to 'Novo Prazo', new_shipping_deadline_path %>
+</div>

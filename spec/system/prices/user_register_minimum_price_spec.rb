@@ -62,9 +62,9 @@ describe 'Usuário cadastra preços mínimos' do
 
   it 'com intervalos já contemplados' do
     sc = ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
-                            brand_name: 'TransLight', email: 'contato@translight.com.br',
-                            street_name: 'Avenida Alberto Maranhão', street_number: '100', complement: 'Galpão 10',
-                            district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000000')
+                                 brand_name: 'TransLight', email: 'contato@translight.com.br',
+                                 street_name: 'Avenida Alberto Maranhão', street_number: '100', complement: 'Galpão 10',
+                                 district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000000')
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
     MinShippingPrice.create!(start_distance: 0, end_distance: 100, price: 100, shipping_company: sc)
 
