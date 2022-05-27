@@ -15,6 +15,7 @@ describe 'Administrador vê painel administrativo' do
     visit admin_root_path
 
     expect(page).to have_content 'Painel Administrativo'
+    expect(page).to have_link 'Nova Cotação'
     expect(page).to have_link 'Transportadoras'
   end
 end

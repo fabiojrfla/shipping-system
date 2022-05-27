@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :shipping_prices, only: %i[index new create]
   resources :min_shipping_prices, only: %i[new create]
   resources :shipping_deadlines, only: %i[index new create]
+  resources :items, only: %i[new create]
+  resources :quotes, only: %i[index] do
+    get 'generated', on: :collection
+  end
 end

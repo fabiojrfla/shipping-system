@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_082416) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_27_005723) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_082416) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "sku"
+    t.integer "height"
+    t.integer "width"
+    t.integer "length"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "min_shipping_prices", force: :cascade do |t|
@@ -63,8 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_082416) do
   end
 
   create_table "shipping_prices", force: :cascade do |t|
-    t.integer "start_volume"
-    t.integer "end_volume"
+    t.decimal "start_volume"
+    t.decimal "end_volume"
     t.integer "start_weight"
     t.integer "end_weight"
     t.decimal "price_km"
