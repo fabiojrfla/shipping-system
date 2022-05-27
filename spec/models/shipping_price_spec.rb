@@ -34,20 +34,6 @@ RSpec.describe ShippingPrice, type: :model do
       end
     end
 
-    context 'numericality' do
-      it 'Volume Inicial deve ser um número inteiro' do
-        shipping_price = ShippingPrice.new(start_volume: 0.1)
-        shipping_price.valid?
-        expect(shipping_price.errors.include?(:start_volume)).to eq true
-      end
-
-      it 'Volume Final deve ser um número inteiro' do
-        shipping_price = ShippingPrice.new(end_volume: 49.5)
-        shipping_price.valid?
-        expect(shipping_price.errors.include?(:end_volume)).to eq true
-      end
-    end
-
     context 'comparison' do
       it 'Volume Final deve ser maior que Volume Inicial' do
         shipping_price = ShippingPrice.new(start_volume: 10, end_volume: 0)

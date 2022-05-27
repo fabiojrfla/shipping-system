@@ -5,7 +5,7 @@
     <table>
       <thead>
         <tr>
-          <th>Volume (cm³)</th>
+          <th>Volume (m³)</th>
           <th>Peso (kg)</th>
           <th>Preço por km</th>
         </tr>
@@ -13,7 +13,7 @@
       <tbody>
         <% @shipping_prices.each do |shipping_price| %>
         <tr>
-          <td><%= shipping_price.start_volume %>-<%= shipping_price.end_volume %>cm³</td>
+          <td><%= shipping_price.start_volume %>-<%= shipping_price.end_volume %>m³</td>
           <td><%= shipping_price.start_weight.fdiv(1000).to_i %>-<%= shipping_price.end_weight.fdiv(1000).to_i %>kg</td>
           <td><%= number_to_currency(shipping_price.price_km) %></td>
         </tr>

@@ -2,7 +2,7 @@
   <div>
     <h2>Transportadora: <%= @user.shipping_company.brand_name %> </h2>
     <% if @user.shipping_company.inactive? %>
-      <span>[<%= I18n.t(@user.shipping_company.status) %>]</span>
+      <span>[<%= t(@user.shipping_company.status) %>]</span>
     <% end %>
   </div>
   <div>

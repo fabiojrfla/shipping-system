@@ -2,7 +2,6 @@ class ShippingPrice < ApplicationRecord
   belongs_to :shipping_company
 
   validates :start_volume, :end_volume, :start_weight, :end_weight, :price_km, presence: true
-  validates :start_volume, :end_volume, numericality: { only_integer: true }
   validates :end_volume, comparison: { greater_than: :start_volume }, allow_blank: true, if: :start_volume
   validates :end_weight, comparison: { greater_than: :start_weight }, allow_blank: true, if: :start_weight
   validate :not_registered

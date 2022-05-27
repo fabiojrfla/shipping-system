@@ -14,9 +14,9 @@ describe 'Usuário vê preços' do
                                  complement: 'Galpão 10', district: 'Centro', city: 'Mossoró', state: 'RN',
                                  postal_code: '59000000')
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
-    ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 0, end_weight: 10, price_km: 0.50,
+    ShippingPrice.create!(start_volume: 0, end_volume: 0.5, start_weight: 0, end_weight: 10, price_km: 0.50,
                           shipping_company: sc)
-    ShippingPrice.create!(start_volume: 50, end_volume: 100, start_weight: 10, end_weight: 30,
+    ShippingPrice.create!(start_volume: 0.5, end_volume: 1, start_weight: 10, end_weight: 30,
                           price_km: 2, shipping_company: sc)
 
     login_as(user, scope: :user)
@@ -27,10 +27,10 @@ describe 'Usuário vê preços' do
       expect(page).to have_content 'Tabela de Preços'
     end
     within('table') do
-      expect(page).to have_content '0-50cm³'
+      expect(page).to have_content '0.0-0.5m³'
       expect(page).to have_content '0-10kg'
       expect(page).to have_content 'R$ 0,50'
-      expect(page).to have_content '50-100cm³'
+      expect(page).to have_content '0.5-1.0m³'
       expect(page).to have_content '10-30kg'
       expect(page).to have_content 'R$ 2,00'
     end
@@ -46,7 +46,7 @@ describe 'Usuário vê preços' do
                                  complement: 'Galpão 10', district: 'Centro', city: 'Mossoró', state: 'RN',
                                  postal_code: '59000000')
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
-    ShippingPrice.create!(start_volume: 0, end_volume: 50, start_weight: 0, end_weight: 10, price_km: 0.50,
+    ShippingPrice.create!(start_volume: 0, end_volume: 0.5, start_weight: 0, end_weight: 10, price_km: 0.50,
                           shipping_company: sc)
     MinShippingPrice.create!(start_distance: 0, end_distance: 100, price: 100, shipping_company: sc)
 
@@ -56,8 +56,8 @@ describe 'Usuário vê preços' do
 
     within('section#prices-per-item') do
       expect(page).to have_content 'Por item'
-      expect(page).to have_content 'Volume (cm³)'
-      expect(page).to have_content '0-50cm³'
+      expect(page).to have_content 'Volume (m³)'
+      expect(page).to have_content '0.0-0.5m³'
       expect(page).to have_content 'Peso (kg)'
       expect(page).to have_content '0-10kg'
       expect(page).to have_content 'Preço por km'
