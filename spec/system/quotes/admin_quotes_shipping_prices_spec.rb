@@ -30,7 +30,8 @@ describe 'Administrador faz cotação de preços' do
       expect(page).to have_field 'Distância (km)'
     end
   end
-  it 'de transportadoras ativas' do
+
+  it 'com sucesso' do
     admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
                           password: 'whatshisname')
     first_sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
@@ -70,15 +71,70 @@ describe 'Administrador faz cotação de preços' do
     click_on 'Cotar'
 
     expect(current_path).to eq generated_quotes_path
+    expect(page).to have_content 'Cotações para UGGBBPUR06'
     expect(page).to have_content '2 transportadoras encontradas'
-    expect(page).to have_content 'código da cotação'
-    expect(page).to have_content 'UGGBBPUR06'
     expect(page).to have_content 'TransLight'
     expect(page).to have_content 'R$ 225,00'
     expect(page).to have_content '5 dias úteis'
-    expect(page).to have_content 'código da cotação'
     expect(page).to have_content 'TExpress'
     expect(page).to have_content 'R$ 250,00'
     expect(page).to have_content '4 dias úteis'
+    expect(page).not_to have_content 'Ache'
+  end
+
+  it 'e nenhuma transportadora atende os requisitos' do
+    admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
+                          password: 'whatshisname')
+    sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
+                                 brand_name: 'TExpress', email: 'contato@texpress.com.br',
+                                 street_name: 'Avenida Felipe Camarão', street_number: '100',
+                                 complement: 'Galpão 10', district: 'Industrial', city: 'Mossoró', state: 'RN',
+                                 postal_code: '59000000')
+    ShippingPrice.create!(start_volume: 0, end_volume: 0.5, start_weight: 0, end_weight: 10, price_km: 0.50,
+                          shipping_company: sc)
+    ShippingDeadline.create!(start_distance: 0, end_distance: 500, deadline: 4, shipping_company: sc)
+
+    login_as(admin, scope: :admin)
+    visit admin_root_path
+    click_on 'Nova Cotação'
+    fill_in 'SKU', with: 'UGGBBPUR06'
+    fill_in 'Altura (cm)', with: '70'
+    fill_in 'Largura (cm)', with: '50'
+    fill_in 'Comprimento (cm)', with: '90'
+    fill_in 'Peso (kg)', with: '15'
+    fill_in 'Distância (km)', with: '300'
+    click_on 'Cotar'
+
+    expect(page).to have_content 'Nenhuma transportadora atende esses requisitos'
+    expect(page).not_to have_content 'TExpress'
+  end
+
+  it 'com dados inválidos' do
+    admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
+                          password: 'whatshisname')
+
+    login_as(admin, scope: :admin)
+    visit admin_root_path
+    click_on 'Nova Cotação'
+    fill_in 'SKU', with: ''
+    fill_in 'Altura (cm)', with: '70'
+    fill_in 'Largura (cm)', with: ''
+    fill_in 'Comprimento (cm)', with: '90'
+    fill_in 'Peso (kg)', with: ''
+    fill_in 'Distância (km)', with: '300'
+    click_on 'Cotar'
+
+    expect(page).to have_content 'Dados inválidos...'
+    expect(page).to have_content 'SKU não pode ficar em branco'
+    expect(page).to have_content 'Largura (cm) não pode ficar em branco'
+    expect(page).to have_content 'Peso (kg) não pode ficar em branco'
+
+    expect(page).not_to have_content 'Altura (cm) não pode ficar em branco'
+    expect(page).not_to have_content 'Comprimento (cm) não pode ficar em branco'
+    expect(page).not_to have_content 'Distância (km) não pode ficar em branco'
+
+    expect(page).to have_field 'Altura (cm)', with: '70'
+    expect(page).to have_field 'Comprimento (cm)', with: '90'
+    expect(page).to have_field 'Distância (km)', with: '300'
   end
 end

@@ -1,7 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      shipping_company: 'Transportadora'
+      shipping_company:
+        one: 'Transportadora'
+        other: 'Transportadoras'
     attributes:
       shipping_company:
         registration_number: 'CNPJ'

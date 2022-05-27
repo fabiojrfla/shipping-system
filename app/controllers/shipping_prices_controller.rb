@@ -20,8 +20,7 @@ class ShippingPricesController < ApplicationController
       flash[:success] = 'Preço cadastrado com sucesso!'
       redirect_to shipping_prices_path
     else
-      @shipping_price.start_weight = ''
-      @shipping_price.end_weight = ''
+      @shipping_price.convert_g_to_kg
       flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end

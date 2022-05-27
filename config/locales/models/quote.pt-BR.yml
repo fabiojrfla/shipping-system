@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      quote:
+        one: 'Cotação'
+        other: 'Cotações'
+    attributes:
+      quote:

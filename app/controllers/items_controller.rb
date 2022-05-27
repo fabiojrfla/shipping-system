@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     distance = params[:item]['Distância (km)']
 
     if @item.save && distance.present?
-      redirect_to generated_quotes_path(distance: distance)
+      redirect_to generated_quotes_path(item: @item.id, distance: distance)
     else
       flash.now[:error] = 'Dados inválidos...'
       render 'new'

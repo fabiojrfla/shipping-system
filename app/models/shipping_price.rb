@@ -8,6 +8,15 @@ class ShippingPrice < ApplicationRecord
 
   before_validation :convert_kg_to_g
 
+  def calc_price(distance)
+    price_km * distance
+  end
+
+  def convert_g_to_kg
+    self.start_weight /= 1_000 if start_weight
+    self.end_weight /= 1_000 if end_weight
+  end
+
   private
 
   def convert_kg_to_g

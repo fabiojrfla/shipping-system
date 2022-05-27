@@ -59,6 +59,7 @@ describe 'Usuário cadastra preços' do
     expect(page).not_to have_content 'Valor por KM (R$) não pode ficar em branco'
 
     expect(page).to have_field 'Volume Inicial (m³)', with: '0'
+    expect(page).to have_field 'Peso Inicial (kg)', with: '0'
     expect(page).to have_field 'Valor por KM (R$)', with: '0.50'
   end
 

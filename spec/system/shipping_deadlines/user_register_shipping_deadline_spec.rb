@@ -42,9 +42,7 @@ describe 'Usuário cadastra prazos' do
     expect(page).to have_content 'Dados inválidos...'
     expect(page).to have_content 'Distância Inicial (km) não pode ficar em branco'
     expect(page).to have_content 'Dias Úteis não pode ficar em branco'
-
     expect(page).not_to have_content 'Distância Final (km) não pode ficar em branco'
-
     expect(page).to have_field 'Distância Final (km)', with: '100'
   end
 

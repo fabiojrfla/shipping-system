@@ -1,5 +1,6 @@
 class QuotesController < ApplicationController
   def generated
-    p params
+    @item = Item.find(params[:item])
+    @quotes = QuoteCreator.call(@item, params[:distance])
   end
 end

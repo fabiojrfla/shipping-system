@@ -6,3 +6,6 @@ pt-BR:
   Forgot your password?: 'Esqueceu sua senha?'
   inactive: 'Inativa'
   distance: 'Distância (km)'
+  found:
+    one: 'encontrada'
+    other: 'encontradas'
