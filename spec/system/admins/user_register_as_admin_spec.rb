@@ -38,7 +38,7 @@ describe 'Usuário se cadastra como Administrador' do
     end
   end
 
-  it 'com dados incompletos' do
+  it 'com dados inválidos' do
     visit root_path
     within('nav') do
       click_on 'Sou Administrador'

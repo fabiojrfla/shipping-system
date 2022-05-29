@@ -1,0 +1,10 @@
+<h2>Cadastrar Prazo</h2>
+<% if @shipping_deadline.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @shipping_deadline.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= render 'form' %>

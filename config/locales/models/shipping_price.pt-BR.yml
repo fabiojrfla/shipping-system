@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      shipping_price: 'Preço'
+    attributes:
+      shipping_price:
+        start_volume: 'Volume Inicial (m³)'
+        end_volume: 'Volume Final (m³)'
+        start_weight: 'Peso Inicial (kg)'
+        end_weight: 'Peso Final (kg)'
+        price_km: 'Valor por KM (R$)'

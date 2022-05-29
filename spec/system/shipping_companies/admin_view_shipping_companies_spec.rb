@@ -23,10 +23,10 @@ describe 'Administrador vê transportadoras' do
     visit admin_root_path
     click_on 'Transportadoras'
 
-    within 'h2' do
+    within('h2') do
       expect(page).to have_content 'Transportadoras'
     end
-    within 'table' do
+    within('table') do
       expect(page).to have_content '12345678000102'
       expect(page).to have_content 'TExpress'
       expect(page).to have_content 'Mossoró/RN'
@@ -34,7 +34,7 @@ describe 'Administrador vê transportadoras' do
       expect(page).to have_content 'TransLight'
       expect(page).to have_content 'Fortaleza/CE'
     end
-    expect(page).not_to have_content 'Não existem transportadoras cadastrados'
+    expect(page).not_to have_content 'Não existem transportadoras cadastradas'
     expect(page).not_to have_content 'Inativas'
   end
 
@@ -56,14 +56,20 @@ describe 'Administrador vê transportadoras' do
 
     within('section#active-shipping-companies') do
       expect(page).to have_content 'Ativas'
+      expect(page).to have_content 'CNPJ'
       expect(page).to have_content '12345678000102'
+      expect(page).to have_content 'Nome Fantasia'
       expect(page).to have_content 'TExpress'
+      expect(page).to have_content 'Localização'
       expect(page).to have_content 'Mossoró/RN'
     end
     within('section#inactive-shipping-companies') do
       expect(page).to have_content 'Inativas'
+      expect(page).to have_content 'CNPJ'
       expect(page).to have_content '98765432000198'
+      expect(page).to have_content 'Nome Fantasia'
       expect(page).to have_content 'TransLight'
+      expect(page).to have_content 'Localização'
       expect(page).to have_content 'Fortaleza/CE'
     end
   end

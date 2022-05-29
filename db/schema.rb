@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_142058) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_27_171118) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +23,38 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_142058) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "sku"
+    t.integer "height"
+    t.integer "width"
+    t.integer "length"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "min_shipping_prices", force: :cascade do |t|
+    t.integer "start_distance"
+    t.integer "end_distance"
+    t.decimal "price"
+    t.integer "shipping_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_company_id"], name: "index_min_shipping_prices_on_shipping_company_id"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string "code"
+    t.decimal "price"
+    t.integer "deadline"
+    t.integer "item_id", null: false
+    t.integer "shipping_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_quotes_on_item_id"
+    t.index ["shipping_company_id"], name: "index_quotes_on_shipping_company_id"
   end
 
   create_table "shipping_companies", force: :cascade do |t|
@@ -42,6 +74,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_142058) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shipping_deadlines", force: :cascade do |t|
+    t.integer "start_distance"
+    t.integer "end_distance"
+    t.integer "deadline"
+    t.integer "shipping_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_company_id"], name: "index_shipping_deadlines_on_shipping_company_id"
+  end
+
+  create_table "shipping_prices", force: :cascade do |t|
+    t.decimal "start_volume"
+    t.decimal "end_volume"
+    t.integer "start_weight"
+    t.integer "end_weight"
+    t.decimal "price_km"
+    t.integer "shipping_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_company_id"], name: "index_shipping_prices_on_shipping_company_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,5 +112,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_142058) do
     t.index ["shipping_company_id"], name: "index_users_on_shipping_company_id"
   end
 
+  add_foreign_key "min_shipping_prices", "shipping_companies"
+  add_foreign_key "quotes", "items"
+  add_foreign_key "quotes", "shipping_companies"
+  add_foreign_key "shipping_deadlines", "shipping_companies"
+  add_foreign_key "shipping_prices", "shipping_companies"
   add_foreign_key "users", "shipping_companies"
 end

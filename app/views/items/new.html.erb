@@ -1,0 +1,10 @@
+<h2>Nova Cotação</h2>
+<% if @item.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= render 'form' %>

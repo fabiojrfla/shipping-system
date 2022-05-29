@@ -1,0 +1,17 @@
+<%= form_with model: @min_shipping_price do |f| %>
+  <div>
+    <%= f.label :start_distance %>
+    <%= f.number_field :start_distance %>
+  </div>
+  <div>
+    <%= f.label :end_distance %>
+    <%= f.number_field :end_distance %>
+  </div>
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

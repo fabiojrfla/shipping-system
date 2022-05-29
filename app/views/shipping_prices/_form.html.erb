@@ -1,0 +1,25 @@
+<%= form_with model: @shipping_price do |f| %>
+  <div>
+    <%= f.label :start_volume %>
+    <%= f.number_field :start_volume %>
+  </div>
+  <div>
+    <%= f.label :end_volume %>
+    <%= f.number_field :end_volume %>
+  </div>
+  <div>
+    <%= f.label :start_weight %>
+    <%= f.number_field :start_weight, step: 0.1 %>
+  </div>
+  <div>
+    <%= f.label :end_weight %>
+    <%= f.number_field :end_weight, step: 0.1 %>
+  </div>
+  <div>
+    <%= f.label :price_km %>
+    <%= f.number_field :price_km, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

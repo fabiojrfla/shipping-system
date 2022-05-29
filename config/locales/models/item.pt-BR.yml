@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      item: 'Item'
+    attributes:
+      item:
+        sku: 'SKU'
+        height: 'Altura (cm)'
+        width: 'Largura (cm)'
+        length: 'Comprimento (cm)'
+        weight: 'Peso (kg)'

@@ -1,0 +1,28 @@
+<h2>Cotações para <%= @item.sku %></h2>
+<% if @quotes.any? %>
+  <p><%= @quotes.count %> <%= ShippingCompany.model_name.human(count: @quotes.count).downcase %> <%= t(:found, count: @quotes.count) %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Item</th>
+        <th>Transportadora</th>
+        <th>Preço</th>
+        <th>Prazo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quotes.each do |quote| %>
+      <tr>
+        <td><%= quote.code %></td>
+        <td><%= quote.item.sku %></td>
+        <td><%= quote.shipping_company.brand_name %></td>
+        <td><%= number_to_currency(quote.price) %></td>
+        <td><%= quote.deadline %> dias úteis</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Nenhuma transportadora atende esses requisitos</p>
+<% end %>

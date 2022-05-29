@@ -32,7 +32,7 @@ describe 'Administrador cadastra uma transportadora' do
     expect(page).to have_content 'Email: contato@texpress.com.br'
   end
 
-  it 'com dados incompletos' do
+  it 'com dados inválidos' do
     admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
                           password: 'whatshisname')
 
@@ -53,7 +53,7 @@ describe 'Administrador cadastra uma transportadora' do
     fill_in 'CEP', with: ''
     click_on 'Criar Transportadora'
 
-    expect(page).to have_content 'Dados incompletos...'
+    expect(page).to have_content 'Dados inválidos...'
     expect(page).to have_content 'CNPJ não pode ficar em branco'
     expect(page).to have_content 'CNPJ não é válido'
     expect(page).to have_content 'Nome Fantasia não pode ficar em branco'
