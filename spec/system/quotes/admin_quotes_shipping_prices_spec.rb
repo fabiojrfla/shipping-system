@@ -80,6 +80,7 @@ describe 'Administrador faz cotação de preços' do
     expect(page).to have_content 'R$ 250,00'
     expect(page).to have_content '4 dias úteis'
     expect(page).not_to have_content 'Ache'
+    expect(page).not_to have_content 'Nenhuma transportadora atende esses requisitos'
   end
 
   it 'e nenhuma transportadora atende os requisitos' do
@@ -116,25 +117,25 @@ describe 'Administrador faz cotação de preços' do
     login_as(admin, scope: :admin)
     visit admin_root_path
     click_on 'Nova Cotação'
-    fill_in 'SKU', with: ''
-    fill_in 'Altura (cm)', with: '70'
-    fill_in 'Largura (cm)', with: ''
-    fill_in 'Comprimento (cm)', with: '90'
-    fill_in 'Peso (kg)', with: ''
-    fill_in 'Distância (km)', with: '300'
+    fill_in 'SKU', with: 'UGGBBPUR06'
+    fill_in 'Altura (cm)', with: ''
+    fill_in 'Largura (cm)', with: '50'
+    fill_in 'Comprimento (cm)', with: ''
+    fill_in 'Peso (kg)', with: '15'
+    fill_in 'Distância (km)', with: ''
     click_on 'Cotar'
 
     expect(page).to have_content 'Dados inválidos...'
-    expect(page).to have_content 'SKU não pode ficar em branco'
-    expect(page).to have_content 'Largura (cm) não pode ficar em branco'
-    expect(page).to have_content 'Peso (kg) não pode ficar em branco'
+    expect(page).to have_content 'Altura (cm) não pode ficar em branco'
+    expect(page).to have_content 'Comprimento (cm) não pode ficar em branco'
+    expect(page).to have_content 'Distância (km) não pode ficar em branco'
 
-    expect(page).not_to have_content 'Altura (cm) não pode ficar em branco'
-    expect(page).not_to have_content 'Comprimento (cm) não pode ficar em branco'
-    expect(page).not_to have_content 'Distância (km) não pode ficar em branco'
+    expect(page).not_to have_content 'SKU não pode ficar em branco'
+    expect(page).not_to have_content 'Largura (cm) não pode ficar em branco'
+    expect(page).not_to have_content 'Peso (kg) não pode ficar em branco'
 
-    expect(page).to have_field 'Altura (cm)', with: '70'
-    expect(page).to have_field 'Comprimento (cm)', with: '90'
-    expect(page).to have_field 'Distância (km)', with: '300'
+    expect(page).to have_field 'SKU', with: 'UGGBBPUR06'
+    expect(page).to have_field 'Largura (cm)', with: '50'
+    expect(page).to have_field 'Peso (kg)', with: '15'
   end
 end

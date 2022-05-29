@@ -24,7 +24,7 @@
     <h3>Distância a ser percorrida entre origem e destino</h3>
     <div>
       <%= f.label t(:distance) %>
-      <%= f.number_field t(:distance), required: true %>
+      <%= f.number_field t(:distance), value: @distance %>
     </div>
     <div>
       <%= f.submit 'Cotar' %>

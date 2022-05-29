@@ -23,7 +23,7 @@ class QuoteCreator < ApplicationService
                                                      @distance).first
       price = price_query.calc_price(@distance.to_i)
       price = [price_query.calc_price(@distance.to_i), min_price_query.price].max if min_price_query
-      quote = Quote.new(item:, shipping_company: sc, price:, deadline: deadline_query.deadline)
+      quote = Quote.new(item: @item, shipping_company: sc, price: price, deadline: deadline_query.deadline)
       next unless quote.save
 
       quotes << quote

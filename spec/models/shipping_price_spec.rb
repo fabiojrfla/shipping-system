@@ -92,4 +92,38 @@ RSpec.describe ShippingPrice, type: :model do
       end
     end
   end
+
+  describe '#calc_price' do
+    it 'calcula o Preço de entrega com base na Distância' do
+      shipping_price = ShippingPrice.new(price_km: 0.75)
+      distance_km = 250
+
+      price = shipping_price.calc_price(distance_km)
+
+      expect(price).to eq 187.5
+    end
+  end
+
+  describe '#convert_g_to_kg' do
+    it 'converte os atributos de Peso de gramas para kilogramas' do
+      shipping_price = ShippingPrice.new(start_weight: 10, end_weight: 30)
+
+      shipping_price.valid?
+      shipping_price.convert_g_to_kg
+
+      expect(shipping_price.start_weight).to eq 10
+      expect(shipping_price.end_weight).to eq 30
+    end
+  end
+
+  describe 'converte o Peso de kilogramas para gramas' do
+    it 'antes da validação' do
+      shipping_price = ShippingPrice.new(start_weight: 10, end_weight: 30)
+
+      shipping_price.valid?
+
+      expect(shipping_price.start_weight).to eq 10_000
+      expect(shipping_price.end_weight).to eq 30_000
+    end
+  end
 end

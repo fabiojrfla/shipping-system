@@ -8,27 +8,13 @@ class MinShippingPrice < ApplicationRecord
 
   private
 
-  def range_validator(shipping_company, start_range, end_range, attr_value)
+  def not_registered
     return unless shipping_company
 
-    shipping_company.min_shipping_prices.pluck(start_range, end_range).detect do |s, e|
-      (s...e).include?(attr_value)
-    end
-  end
-
-  def set_shipping_company
-    return unless shipping_company_id
-
-    ShippingCompany.find(shipping_company_id)
-  end
-
-  def not_registered
-    shipping_company = set_shipping_company
+    ranges = shipping_company.min_shipping_prices.pluck(:start_distance, :end_distance)
     message = 'já inclusa em intervalo cadastrado'
-    if range_validator(shipping_company, :start_distance, :end_distance, start_distance)
-      errors.add(:start_distance, message)
-    end
-    return unless range_validator(shipping_company, :start_distance, :end_distance, end_distance)
+    errors.add(:start_distance, message) if ranges.detect { |s, e| (s...e).include?(start_distance) }
+    return unless ranges.detect { |s, e| (s...e).include?(end_distance) }
 
     errors.add(:end_distance, message)
   end

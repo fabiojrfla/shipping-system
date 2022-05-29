@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
   def generated
-    @item = Item.find(params[:item])
-    @quotes = QuoteCreator.call(@item, params[:distance])
+    @item = Item.find_by(sku: params[:i])
+    @quotes = QuoteCreator.call(@item, params[:d])
   end
 end

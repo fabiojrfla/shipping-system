@@ -45,7 +45,7 @@ RSpec.describe MinShippingPrice, type: :model do
     end
 
     context 'register' do
-      it 'intervalo de Distância precisa ser diferente dos já cadastrados' do
+      it 'se intervalo de Distância for diferente dos já cadastrados' do
         sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
                                      brand_name: 'TExpress', email: 'contato@texpress.com.br',
                                      street_name: 'Avenida Felipe Camarão', street_number: '100',

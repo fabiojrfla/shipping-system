@@ -45,21 +45,21 @@ describe 'Usuário cadastra preços' do
     end
     fill_in 'Volume Inicial (m³)', with: '0'
     fill_in 'Volume Final (m³)', with: ''
-    fill_in 'Peso Inicial (kg)', with: '0'
-    fill_in 'Peso Final (kg)', with: ''
+    fill_in 'Peso Inicial (kg)', with: ''
+    fill_in 'Peso Final (kg)', with: '10'
     fill_in 'Valor por KM (R$)', with: '0.50'
     click_on 'Criar Preço'
 
     expect(page).to have_content 'Dados inválidos...'
     expect(page).to have_content 'Volume Final (m³) não pode ficar em branco'
-    expect(page).to have_content 'Peso Final (kg) não pode ficar em branco'
+    expect(page).to have_content 'Peso Inicial (kg) não pode ficar em branco'
 
     expect(page).not_to have_content 'Volume Inicial (m³) não pode ficar em branco'
-    expect(page).not_to have_content 'Peso Inicial (kg) não pode ficar em branco'
+    expect(page).not_to have_content 'Peso Final (kg) não pode ficar em branco'
     expect(page).not_to have_content 'Valor por KM (R$) não pode ficar em branco'
 
     expect(page).to have_field 'Volume Inicial (m³)', with: '0'
-    expect(page).to have_field 'Peso Inicial (kg)', with: '0'
+    expect(page).to have_field 'Peso Final (kg)', with: '10'
     expect(page).to have_field 'Valor por KM (R$)', with: '0.50'
   end
 

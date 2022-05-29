@@ -24,28 +24,23 @@ class ShippingPrice < ApplicationRecord
     self.end_weight *= 1_000 if end_weight
   end
 
-  def range_validator(shipping_company, start_range, end_range, attr_value)
-    return unless shipping_company
-
-    shipping_company.shipping_prices.pluck(start_range, end_range).detect do |s, e|
+  def range_validator(ranges, attr_value)
+    ranges.detect do |s, e|
       (s...e).include?(attr_value)
     end
   end
 
-  def set_shipping_company
-    return unless shipping_company_id
-
-    ShippingCompany.find(shipping_company_id)
-  end
-
   def not_registered
-    shipping_company = set_shipping_company
+    return unless shipping_company
+
+    volume_ranges = shipping_company.shipping_prices.pluck(:start_volume, :end_volume)
+    weight_ranges = shipping_company.shipping_prices.pluck(:start_weight, :end_weight)
     volume_validator = []
+    volume_validator << range_validator(volume_ranges, start_volume)
+    volume_validator << range_validator(volume_ranges, end_volume)
     weight_validator = []
-    volume_validator << range_validator(shipping_company, :start_volume, :end_volume, start_volume)
-    volume_validator << range_validator(shipping_company, :start_volume, :end_volume, end_volume)
-    weight_validator << range_validator(shipping_company, :start_weight, :end_weight, start_weight)
-    weight_validator << range_validator(shipping_company, :start_weight, :end_weight, end_weight)
+    weight_validator << range_validator(weight_ranges, start_weight)
+    weight_validator << range_validator(weight_ranges, end_weight)
 
     return unless volume_validator.any? && weight_validator.any?
 
