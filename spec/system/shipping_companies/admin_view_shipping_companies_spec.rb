@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe 'Administrador vê transportadoras' do
-  it 'se estiver autenticado' do
-    visit shipping_companies_path
-
-    expect(current_path).to eq new_admin_session_path
-  end
-
   it 'com sucesso' do
     admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
                           password: 'whatshisname')

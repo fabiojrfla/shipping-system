@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra preços mínimos' do
-  it 'se estiver autenticado' do
-    visit new_min_shipping_price_path
-
-    expect(current_path).to eq new_user_session_path
-  end
-
   it 'com sucesso' do
     ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
                             brand_name: 'TransLight', email: 'contato@translight.com.br',
