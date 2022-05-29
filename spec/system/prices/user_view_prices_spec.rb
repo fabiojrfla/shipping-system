@@ -84,5 +84,6 @@ describe 'Usuário vê preços' do
     within('section#minimum-prices') do
       expect(page).to have_content 'Não existem preços cadastrados'
     end
+    expect(page).not_to have_css 'table'
   end
 end

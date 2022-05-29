@@ -1,0 +1,6 @@
+<h2>Cotações</h2>
+<% if @quotes.any? %>
+  <%= render 'quotes' %>
+<% else %>
+  <p>Ainda não foram geradas cotações</p>
+<% end %>
