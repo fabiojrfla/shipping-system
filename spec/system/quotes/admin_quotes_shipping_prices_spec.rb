@@ -67,11 +67,11 @@ describe 'Administrador faz cotação de preços' do
     expect(current_path).to eq generated_quotes_path
     expect(page).to have_content 'Cotações para UGGBBPUR06'
     expect(page).to have_content '2 transportadoras encontradas'
-    expect(page).to have_content Quote.first.code
+    expect(page).to have_content Quote.last.code
     expect(page).to have_content 'TransLight'
     expect(page).to have_content 'R$ 225,00'
     expect(page).to have_content '5 dias úteis'
-    expect(page).to have_content Quote.last.code
+    expect(page).to have_content Quote.first.code
     expect(page).to have_content 'TExpress'
     expect(page).to have_content 'R$ 250,00'
     expect(page).to have_content '4 dias úteis'

@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      service_order: 'Ordem de Serviço'
+    attributes:
+      service_order:
+        quote_id: 'Cotação'

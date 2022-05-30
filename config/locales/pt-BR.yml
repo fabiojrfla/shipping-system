@@ -9,3 +9,7 @@ pt-BR:
   found:
     one: 'encontrada'
     other: 'encontradas'
+  pending: 'Pendente'
+  bussiness_day:
+    one: 'dia útil'
+    other: 'dias úteis'

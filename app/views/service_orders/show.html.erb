@@ -1,0 +1,33 @@
+<h2>Ordem de Serviço <%= @service_order.code %></h2>
+<span>[<%= t(@service_order.status) %>]</span>
+<div>
+  <dl>
+    <dt><strong>Data</strong></dt>
+    <dd><%= l(@service_order.created_at.to_date) %></dd>
+    <div id="item">
+      <h3>Item <%= @service_order.quote.item.sku %></h3>
+      <dt><strong>Dimensões:</strong></dt>
+      <dd><%= @service_order.quote.item.full_dimensions %></dd>
+      <dt><strong>Peso:</strong></dt>
+      <dd><%= @service_order.quote.item.weight.fdiv(1000).to_i %>kg</dd>
+    </div>
+    <dt><strong>Endereço para retirada:</strong></dt>
+    <dd><%= @service_order.address.full_address %></dd>
+    <div id="remittee">
+      <h3>Destinatário</h3>
+      <dt><strong>Doc. de Identificação:</strong></dt>
+      <dd><%= @service_order.remittee.id_number %></dd>
+      <dt><strong>Nome Completo:</strong></dt>
+      <dd><%= @service_order.remittee.full_name %></dd>
+    </div>
+    <dt><strong>Endereço para entrega:</strong></dt>
+    <dd><%= @service_order.remittee.address.full_address %></dd>
+    <dt><strong>Valor do frete:</strong></dt>
+    <dd><%= number_to_currency(@service_order.quote.price) %></dd>
+    <dt><strong>Estimativa de entrega:</strong></dt>
+    <dd><%= @service_order.quote.deadline %> <%= t(:bussiness_day, count: @service_order.quote.deadline) %></dd>
+  </dl>
+</div>
+<div>
+  <%= link_to 'Voltar', service_orders_path %>
+</div>

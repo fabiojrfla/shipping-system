@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :quotes, only: %i[index] do
     get 'generated', on: :collection
   end
+  resources :service_orders, only: %i[new create show index]
 end

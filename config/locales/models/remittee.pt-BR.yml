@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      remittee: 'Destinatário'
+    attributes:
+      remittee:
+        id_number: 'Doc. de Identificação'
+        name: 'Nome'
+        surname: 'Sobrenome'

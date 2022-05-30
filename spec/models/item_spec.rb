@@ -79,6 +79,14 @@ RSpec.describe Item, type: :model do
     end
   end
 
+  describe '#full_dimensions' do
+    it 'retorna as dimensões em uma única string' do
+    item = Item.new(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
+    full_dimensions = item.full_dimensions
+    expect(full_dimensions).to eq '70 x 50 x 90cm'
+    end
+  end
+
   describe 'converte o Peso de kilogramas para gramas' do
     it 'antes da validação' do
       item = Item.new(weight: 5)

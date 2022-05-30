@@ -11,6 +11,7 @@ describe 'Administrador vê painel administrativo' do
     expect(page).to have_content 'Painel Administrativo'
     expect(page).to have_link 'Nova Cotação'
     expect(page).to have_link 'Cotações'
+    expect(page).to have_link 'Ordens de Serviço'
     expect(page).to have_link 'Transportadoras'
   end
 end

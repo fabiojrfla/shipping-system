@@ -13,6 +13,10 @@ class Item < ApplicationRecord
     self.weight /= 1_000 if weight
   end
 
+  def full_dimensions
+    "#{height} x #{width} x #{length}cm"
+  end
+
   private
 
   def convert_kg_to_g

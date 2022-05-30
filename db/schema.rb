@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_27_171118) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_042118) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_name"
+    t.string "street_number"
+    t.string "complement"
+    t.string "district"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "addressable_type", null: false
+    t.integer "addressable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,6 +70,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_171118) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_quotes_on_item_id"
     t.index ["shipping_company_id"], name: "index_quotes_on_shipping_company_id"
+  end
+
+  create_table "remittees", force: :cascade do |t|
+    t.string "id_number"
+    t.string "name"
+    t.string "surname"
+    t.integer "service_order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_order_id"], name: "index_remittees_on_service_order_id"
+  end
+
+  create_table "service_orders", force: :cascade do |t|
+    t.string "code"
+    t.integer "quote_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 5
+    t.index ["quote_id"], name: "index_service_orders_on_quote_id"
   end
 
   create_table "shipping_companies", force: :cascade do |t|
@@ -115,6 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_171118) do
   add_foreign_key "min_shipping_prices", "shipping_companies"
   add_foreign_key "quotes", "items"
   add_foreign_key "quotes", "shipping_companies"
+  add_foreign_key "remittees", "service_orders"
+  add_foreign_key "service_orders", "quotes"
   add_foreign_key "shipping_deadlines", "shipping_companies"
   add_foreign_key "shipping_prices", "shipping_companies"
   add_foreign_key "users", "shipping_companies"
