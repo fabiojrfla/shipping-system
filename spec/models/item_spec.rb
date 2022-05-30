@@ -34,15 +34,6 @@ RSpec.describe Item, type: :model do
       end
     end
 
-    context 'uniqueness' do
-      it 'SKU deve ser único' do
-        Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
-        item = Item.new(sku: 'UGGBBPUR06')
-        item.valid?
-        expect(item.errors.include?(:sku)).to eq true
-      end
-    end
-
     context 'numericality' do
       it 'Altura deve ser um número inteiro' do
         item = Item.new(height: 50.5)
@@ -76,6 +67,14 @@ RSpec.describe Item, type: :model do
       item = Item.new(weight: 5)
       item.valid?
       expect { item.convert_g_to_kg }.to change(item, :weight).from(5_000).to(5)
+    end
+  end
+
+  describe '#full_dimensions' do
+    it 'retorna as dimensões em uma única string' do
+    item = Item.new(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
+    full_dimensions = item.full_dimensions
+    expect(full_dimensions).to eq '70 x 50 x 90cm'
     end
   end
 

@@ -1,0 +1,40 @@
+<h2>Nova Ordem de Serviço</h2>
+<%= form_for @service_order do |f| %>
+  <div>
+    <%= f.label :quote_id %>
+    <%= f.collection_select :quote_id, @quote, :id, :code %>
+  </div>
+  <div id="remitter">
+    <h3>Endereço para retirada</h3>
+    <%= f.fields_for :address do |address_f| %>
+      <%= render partial: 'shared/address/form', locals: { f: address_f } %>
+    <% end %>
+  </div>
+  <div id="remittee">
+    <h3>Informações para entrega</h3>
+    <h4>Destinatário</h4>
+    <%= f.fields_for :remittee do |remittee_f| %>
+      <div>
+        <%= remittee_f.label :id_number %>
+        <%= remittee_f.number_field :id_number %>
+      </div>
+      <div>
+        <%= remittee_f.label :name %>
+        <%= remittee_f.text_field :name %>
+      </div>
+      <div>
+        <%= remittee_f.label :surname %>
+        <%= remittee_f.text_field :surname %>
+      </div>
+      <h4>Endereço</h4>
+      <div>
+        <%= remittee_f.fields_for :address do |remittee_address_f| %>
+          <%= render partial: 'shared/address/form', locals: { f: remittee_address_f } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

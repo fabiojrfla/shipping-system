@@ -43,5 +43,6 @@ describe 'Usuário vê prazos' do
     click_on 'Tabela de Prazos'
 
     expect(page).to have_content 'Não existem prazos cadastrados'
+    expect(page).not_to have_css 'table'
   end
 end

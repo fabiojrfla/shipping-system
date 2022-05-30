@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     @distance = params[:item]['Distância (km)']
 
     if @item.save && @distance.present?
-      redirect_to generated_quotes_path(i: @item.sku, d: @distance)
+      redirect_to generated_quotes_path(i: @item.id, d: @distance)
     else
       @item.convert_g_to_kg
       @item.errors.add(:base, 'Distância (km) não pode ficar em branco') if @distance.blank?

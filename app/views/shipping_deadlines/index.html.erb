@@ -11,7 +11,7 @@
       <% @shipping_deadlines.each do |shipping_deadline| %>
       <tr>
         <td><%= shipping_deadline.start_distance %>-<%= shipping_deadline.end_distance %>km</td>
-        <td><%= shipping_deadline.deadline %> dias úteis</td>
+        <td><%= shipping_deadline.deadline %> <%= t(:bussiness_day, count: shipping_deadline.deadline) %></td>
       </tr>
       <% end %>
     </tbody>

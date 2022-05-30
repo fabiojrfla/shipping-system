@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Código</th>
+      <th>Item</th>
+      <th>Transportadora</th>
+      <th>Preço</th>
+      <th>Prazo</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quotes.each do |quote| %>
+    <tr>
+      <td><%= l(quote.created_at.to_date) %></td>
+      <td><%= quote.code %></td>
+      <td><%= quote.item.sku %></td>
+      <td><%= quote.shipping_company.brand_name %></td>
+      <td><%= number_to_currency(quote.price) %></td>
+      <td><%= quote.deadline %> dias úteis</td>
+      <td><%= link_to 'Criar Ordem de Serviço', new_service_order_path(q: quote.code) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

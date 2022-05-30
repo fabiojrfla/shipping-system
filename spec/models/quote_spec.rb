@@ -22,7 +22,7 @@ RSpec.describe Quote, type: :model do
   end
 
   describe 'gera um código aleátorio' do
-    it 'ao gerar uma nova cotação' do
+    it 'ao gerar uma nova Cotação' do
       sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
                                    brand_name: 'TExpress', email: 'contato@texpress.com.br',
                                    street_name: 'Avenida Felipe Camarão', street_number: '100',

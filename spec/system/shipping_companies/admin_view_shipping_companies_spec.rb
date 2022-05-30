@@ -79,5 +79,6 @@ describe 'Administrador vê transportadoras' do
     expect(page).to have_content 'Não existem transportadoras cadastradas'
     expect(page).not_to have_content 'Ativas'
     expect(page).not_to have_content 'Inativas'
+    expect(page).not_to have_css 'table'
   end
 end
