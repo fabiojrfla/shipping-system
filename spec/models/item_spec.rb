@@ -34,15 +34,6 @@ RSpec.describe Item, type: :model do
       end
     end
 
-    context 'uniqueness' do
-      it 'SKU deve ser único' do
-        Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
-        item = Item.new(sku: 'UGGBBPUR06')
-        item.valid?
-        expect(item.errors.include?(:sku)).to eq true
-      end
-    end
-
     context 'numericality' do
       it 'Altura deve ser um número inteiro' do
         item = Item.new(height: 50.5)

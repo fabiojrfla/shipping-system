@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   validates :sku, :height, :width, :length, :weight, presence: true
-  validates :sku, uniqueness: true
   validates :height, :width, :length, numericality: { only_integer: true }
 
   before_validation :convert_kg_to_g

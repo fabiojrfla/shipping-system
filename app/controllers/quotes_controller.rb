@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
 
   def generated
     distance = params[:d]
-    @item = Item.find_by(sku: params[:i])
+    @item = Item.find(params[:i])
     @quotes = QuoteCreator.call(@item, distance)
   end
 
