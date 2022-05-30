@@ -6,10 +6,11 @@ class User < ApplicationRecord
 
   belongs_to :shipping_company
 
+  before_validation :assign_shipping_company, on: :create
+
   validates :name, :surname, presence: true
   validate :email_eq_to_registered_shipping_company
 
-  before_validation :assign_shipping_company, on: :create
   after_validation :delete_shipping_company_error
 
   private

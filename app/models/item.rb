@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
+  before_validation :convert_kg_to_g
+
   validates :sku, :height, :width, :length, :weight, presence: true
   validates :height, :width, :length, numericality: { only_integer: true }
-
-  before_validation :convert_kg_to_g
 
   def calc_volume
     (height * width * length) / 1_000_000.to_d

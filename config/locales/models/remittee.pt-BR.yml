@@ -7,3 +7,11 @@ pt-BR:
         id_number: 'Doc. de Identificação'
         name: 'Nome'
         surname: 'Sobrenome'
+      remittee/address:
+        street_name: 'Logradouro'
+        street_number: 'Número'
+        complement: 'Complemento'
+        district: 'Bairro'
+        city: 'Cidade'
+        state: 'Estado'
+        postal_code: 'CEP'

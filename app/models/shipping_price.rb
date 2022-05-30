@@ -1,12 +1,12 @@
 class ShippingPrice < ApplicationRecord
   belongs_to :shipping_company
 
+  before_validation :convert_kg_to_g
+
   validates :start_volume, :end_volume, :start_weight, :end_weight, :price_km, presence: true
   validates :end_volume, comparison: { greater_than: :start_volume }, allow_blank: true, if: :start_volume
   validates :end_weight, comparison: { greater_than: :start_weight }, allow_blank: true, if: :start_weight
   validate :not_registered
-
-  before_validation :convert_kg_to_g
 
   def calc_price(distance)
     price_km * distance

@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe ServiceOrder, type: :model do
+  describe '#valid' do
+    it 'cotação não pode ser utilizada em mais de uma Ordem de Serviço' do
+      sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
+                                   brand_name: 'TExpress', email: 'contato@texpress.com.br',
+                                   street_name: 'Avenida Felipe Camarão', street_number: '100',
+                                   complement: 'Galpão 10', district: 'Industrial', city: 'Mossoró', state: 'RN',
+                                   postal_code: '59000000')
+      item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
+      quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
+      ServiceOrder.create!(quote:)
+      service_order = ServiceOrder.new(quote:)
+
+      service_order.valid?
+
+      expect(service_order.errors.include?(:quote_id)).to eq true
+    end
+  end
+
   describe 'status' do
     it 'pendente quando criada' do
       sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',

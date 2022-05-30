@@ -154,15 +154,14 @@ RSpec.describe ShippingCompany, type: :model do
       end
 
       it 'Estado deve ter tamanho válido' do
-        shipping_company = ShippingCompany.new(state: 'Rio Grande do Norte')
-        shipping_company.valid?
-        expect(shipping_company.errors.include?(:state)).to eq true
-      end
+        first_shipping_company = ShippingCompany.new(state: 'Rio Grande do Norte')
+        second_shipping_company = ShippingCompany.new(state: 'N')
 
-      it 'Estado deve ter tamanho válido' do
-        shipping_company = ShippingCompany.new(state: 'N')
-        shipping_company.valid?
-        expect(shipping_company.errors.include?(:state)).to eq true
+        first_shipping_company.valid?
+        second_shipping_company.valid?
+
+        expect(first_shipping_company.errors.include?(:state)).to eq true
+        expect(second_shipping_company.errors.include?(:state)).to eq true
       end
 
       it 'CEP deve ter tamanho válido' do

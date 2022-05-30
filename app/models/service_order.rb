@@ -6,6 +6,8 @@ class ServiceOrder < ApplicationRecord
 
   enum status: { pending: 5, accepted: 10 }
 
+  validates :quote_id, uniqueness: true
+
   before_create :generate_code
 
   private

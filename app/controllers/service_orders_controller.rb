@@ -13,6 +13,7 @@ class ServiceOrdersController < ApplicationController
       flash[:success] = 'Ordem de Serviço criada com sucesso!'
       redirect_to @service_order
     else
+      @quote = [Quote.find(@service_order.quote_id)]
       flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end

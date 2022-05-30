@@ -1,4 +1,12 @@
 <h2>Nova Ordem de Serviço</h2>
+<% if @service_order.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @service_order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @service_order do |f| %>
   <div>
     <%= f.label :quote_id %>
