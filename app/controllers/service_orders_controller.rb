@@ -24,7 +24,7 @@ class ServiceOrdersController < ApplicationController
   end
 
   def index
-    @service_orders = ServiceOrder.order(created_at: :desc)
+    @service_orders_pending = ServiceOrder.where(status: 'pending').order(created_at: :desc)
   end
 
   private
