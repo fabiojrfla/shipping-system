@@ -34,4 +34,12 @@ RSpec.describe Vehicle, type: :model do
       end
     end
   end
+
+  describe '#full_description' do
+    it 'retorna Placa, Marca e Modelo em uma única string' do
+      vehicle = Vehicle.new(license_plate: 'LSN4I49', make: 'Ford', model: 'F-4000')
+      full_description = vehicle.full_description
+      expect(full_description).to eq 'LSN4I49 - Ford F-4000'
+    end
+  end
 end

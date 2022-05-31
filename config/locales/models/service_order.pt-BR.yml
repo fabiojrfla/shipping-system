@@ -6,3 +6,4 @@ pt-BR:
       service_order:
         quote_id: 'Cotação'
         shipping_company_id: 'Transportadora'
+        vehicle_id: 'Veículo'

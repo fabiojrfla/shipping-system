@@ -3,15 +3,15 @@ require 'rails_helper'
 describe 'Usuário vê Ordens de Serviço' do
   it 'da sua transportadora' do
     first_sc = ShippingCompany.create!(registration_number: '98765432000198',
-                                        corporate_name: 'Light Transportes LTDA', brand_name: 'TransLight',
-                                        email: 'contato@translight.com.br', street_name: 'Avenida Alberto Maranhão',
-                                        street_number: '100', complement: 'Galpão 10', district: 'Centro',
-                                        city: 'Fortaleza', state: 'CE', postal_code: '60010010')
+                                       corporate_name: 'Light Transportes LTDA', brand_name: 'TransLight',
+                                       email: 'contato@translight.com.br', street_name: 'Avenida Alberto Maranhão',
+                                       street_number: '100', complement: 'Galpão 10', district: 'Centro',
+                                       city: 'Fortaleza', state: 'CE', postal_code: '60010010')
     second_sc = ShippingCompany.create!(registration_number: '12345678000102',
-                                       corporate_name: 'Transporte Expresso LTDA', brand_name: 'TExpress',
-                                       email: 'contato@texpress.com.br', street_name: 'Avenida Felipe Camarão',
-                                       street_number: '100', complement: 'Galpão 10', district: 'Industrial',
-                                       city: 'Mossoró', state: 'RN', postal_code: '59000000')
+                                        corporate_name: 'Transporte Expresso LTDA', brand_name: 'TExpress',
+                                        email: 'contato@texpress.com.br', street_name: 'Avenida Felipe Camarão',
+                                        street_number: '100', complement: 'Galpão 10', district: 'Industrial',
+                                        city: 'Mossoró', state: 'RN', postal_code: '59000000')
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
     first_item = Item.create!(sku: 'UGGBBPUR06', height: 60, width: 60, length: 80, weight: 4)
     second_item = Item.create!(sku: 'BFGBBPUR08', height: 70, width: 50, length: 90, weight: 5)
@@ -55,13 +55,13 @@ describe 'Usuário vê Ordens de Serviço' do
     expect(page).to have_link first_so.code
     expect(page).to have_content 'Item'
     expect(page).to have_content 'UGGBBPUR06'
-    expect(page).to have_content 'Transportadora'
-    expect(page).to have_content 'TExpress'
     expect(page).to have_link second_so.code
 
     expect(page).not_to have_content third_so.code
     expect(page).not_to have_content 'BFGBBPUR08'
+    expect(page).not_to have_content 'Transportadora'
     expect(page).not_to have_content 'TransLight'
+    expect(page).not_to have_content 'TExpress'
     expect(page).not_to have_css 'section#accepted-service-orders'
     expect(page).not_to have_content 'Nenhuma ordem de serviço'
   end
@@ -78,8 +78,10 @@ describe 'Usuário vê Ordens de Serviço' do
     click_on 'Ordens de Serviço'
 
     expect(page).to have_content 'Nenhuma ordem de serviço'
+    expect(page).not_to have_content 'Não existem ordens de serviço criadas'
     expect(page).not_to have_content 'Pendentes'
     expect(page).not_to have_content 'Aceitas'
+    expect(page).not_to have_content 'Rejeitadas'
     expect(page).not_to have_css 'table'
   end
 end

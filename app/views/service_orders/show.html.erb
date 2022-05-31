@@ -4,8 +4,10 @@
   <dl>
     <dt><strong>Data:</strong></dt>
     <dd><%= l(@service_order.created_at.to_date) %></dd>
-    <dt><strong>Transportadora:</strong></dt>
-    <dd><%= @service_order.shipping_company.full_description %></dd>
+    <% if admin_signed_in? %>
+      <dt><strong>Transportadora:</strong></dt>
+      <dd><%= @service_order.shipping_company.full_description %></dd>
+    <% end %>
     <div id="item">
       <h3>Item <%= @service_order.quote.item.sku %></h3>
       <dt><strong>Dimensões:</strong></dt>
@@ -28,8 +30,18 @@
     <dd><%= number_to_currency(@service_order.quote.price) %></dd>
     <dt><strong>Estimativa de entrega:</strong></dt>
     <dd><%= @service_order.quote.deadline %> <%= t(:bussiness_day, count: @service_order.quote.deadline) %></dd>
+    <% if @service_order.accepted? %>
+      <dt><strong>Veículo responsável pela entrega:</strong></dt>
+      <dd><%= @service_order.vehicle.full_description %></dd>
+    <% end %>
   </dl>
 </div>
+<% if user_signed_in? %>
+  <div>
+    <%= link_to 'Aceitar Ordem de Serviço', set_vehicle_service_order_path(@service_order) %>
+    <%= button_to 'Rejeitar Ordem de Serviço', reject_service_order_path(@service_order), method: :patch %>
+  </div>
+<% end %>
 <div>
   <%= link_to 'Voltar', service_orders_path %>
 </div>

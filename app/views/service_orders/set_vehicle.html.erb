@@ -1,0 +1,10 @@
+<h2>Aceitar Ordem de Serviço</h2>
+<%= form_with model: @service_order, url: accept_service_order_path, method: 'patch' do |f|  %>
+  <div>
+    <%= f.label :vehicle_id %>
+    <%= f.collection_select :vehicle_id, @vehicles, :id, :full_description, required: true %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

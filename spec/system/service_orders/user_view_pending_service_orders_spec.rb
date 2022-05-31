@@ -42,8 +42,6 @@ describe 'Usuário vê Ordens de Serviço pendentes' do
       expect(page).to have_link first_so.code
       expect(page).to have_content 'Item'
       expect(page).to have_content 'UGGBBPUR06'
-      expect(page).to have_content 'Transportadora'
-      expect(page).to have_content 'TransLight'
       expect(page).to have_link second_so.code
     end
     expect(page).not_to have_content 'Não há ordens de serviço pendentes'

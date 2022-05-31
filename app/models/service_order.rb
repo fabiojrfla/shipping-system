@@ -1,11 +1,12 @@
 class ServiceOrder < ApplicationRecord
   belongs_to :quote
   belongs_to :shipping_company
+  belongs_to :vehicle, optional: true
   has_one :address, as: :addressable
   has_one :remittee
   accepts_nested_attributes_for :address, :remittee
 
-  enum status: { pending: 5, accepted: 10 }
+  enum status: { pending: 5, accepted: 10, rejected: 15 }
 
   validates :quote_id, uniqueness: true
 

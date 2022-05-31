@@ -186,7 +186,7 @@ RSpec.describe ShippingCompany, type: :model do
   describe '#full_description' do
     it 'retorna CNPJ e Razão Social em uma única string' do
       shipping_company = ShippingCompany.new(registration_number: '12345678000102',
-                                             corporate_name: 'Transporte Expresso LTDA',)
+                                             corporate_name: 'Transporte Expresso LTDA')
       full_description = shipping_company.full_description
       expect(full_description).to eq '12345678000102 - Transporte Expresso LTDA'
     end

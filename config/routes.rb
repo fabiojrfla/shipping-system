@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   resources :quotes, only: %i[index] do
     get 'generated', on: :collection
   end
-  resources :service_orders, only: %i[new create show index]
+  resources :service_orders, only: %i[new create show index] do
+    get 'set_vehicle', on: :member
+    patch 'accept', on: :member
+    patch 'reject', on: :member
+  end
   resources :vehicles, only: %i[index new create]
 end

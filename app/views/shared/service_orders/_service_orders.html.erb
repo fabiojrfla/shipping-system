@@ -4,7 +4,9 @@
       <th>Data</th>
       <th>Código</th>
       <th>Item</th>
-      <th>Transportadora</th>
+      <% if admin_signed_in? %>
+        <th>Transportadora</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +15,9 @@
       <td><%= l(service_order.created_at.to_date) %></td>
       <td><%= link_to service_order.code, service_order %></td>
       <td><%= service_order.quote.item.sku %></td>
-      <td><%= service_order.quote.shipping_company.brand_name %></td>
+      <% if admin_signed_in? %>
+        <td><%= service_order.quote.shipping_company.brand_name %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

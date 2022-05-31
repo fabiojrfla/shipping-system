@@ -15,7 +15,7 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
                     district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010', addressable: so)
     remittee = Remittee.create!(id_number: '341327200', name: 'Charlie', surname: 'Chaplin', service_order: so)
     Address.create!(street_name: 'Avenida Guararapes', street_number: '100', complement: 'Galpão 88',
-                    district: 'Industrial', city: 'Recife', state: 'PE', postal_code: '50010010',addressable: remittee)
+                    district: 'Industrial', city: 'Recife', state: 'PE', postal_code: '50010010', addressable: remittee)
 
     login_as(admin, scope: :admin)
     visit admin_root_path
@@ -46,6 +46,9 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
     expect(page).to have_content 'Avenida Guararapes, 100, Galpão 88, Industrial, Recife/PE - CEP 50010010'
     expect(page).to have_content 'Valor do frete: R$ 250,00'
     expect(page).to have_content 'Estimativa de entrega: 4 dias úteis'
+
+    expect(page).not_to have_link 'Aceitar Ordem de Serviço'
+    expect(page).not_to have_button 'Rejeitar Ordem de Serviço'
   end
 
   it 'e volta pra tela de ordens de serviços' do
@@ -59,12 +62,12 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
     quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
     so = ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
     Address.create!(street_name: 'Avenida Rio Branco', street_number: '100', complement: 'Galpão 30',
-                                    district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010',
-                                    addressable: so)
+                    district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010',
+                    addressable: so)
     remittee = Remittee.create!(id_number: '341327200', name: 'Charlie', surname: 'Chaplin', service_order: so)
     Address.create!(street_name: 'Avenida Guararapes', street_number: '100', complement: 'Galpão 88',
-                                     district: 'Industrial', city: 'Recife', state: 'PE', postal_code: '50010010',
-                                     addressable: remittee)
+                    district: 'Industrial', city: 'Recife', state: 'PE', postal_code: '50010010',
+                    addressable: remittee)
 
     login_as(admin, scope: :admin)
     visit admin_root_path

@@ -22,7 +22,7 @@ describe 'Usuário vê veículos' do
     end
     within('table') do
       expect(page).to have_content 'Placa'
-      expect(page).to have_link 'LSN4I49'
+      expect(page).to have_content 'LSN4I49'
       expect(page).to have_content 'Marca'
       expect(page).to have_content 'Ford'
       expect(page).to have_content 'Modelo'
