@@ -1,5 +1,7 @@
 <h2>Ordem de Serviço <%= @service_order.code %></h2>
-<span>[<%= t(@service_order.status) %>]</span>
+<% unless @service_order.accepted? %>
+  <span>[<%= t(@service_order.status) %>]</span>
+<% end %>
 <div>
   <dl>
     <dt><strong>Data:</strong></dt>
@@ -36,7 +38,7 @@
     <% end %>
   </dl>
 </div>
-<% if user_signed_in? %>
+<% if user_signed_in? && @service_order.pending?%>
   <div>
     <%= link_to 'Aceitar Ordem de Serviço', set_vehicle_service_order_path(@service_order) %>
     <%= button_to 'Rejeitar Ordem de Serviço', reject_service_order_path(@service_order), method: :patch %>

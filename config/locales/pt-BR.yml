@@ -13,3 +13,5 @@ pt-BR:
   bussiness_day:
     one: 'dia útil'
     other: 'dias úteis'
+  rejected: 'Rejeitada'
+  accepted: 'Aceita'

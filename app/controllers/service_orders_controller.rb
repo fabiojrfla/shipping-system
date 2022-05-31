@@ -3,7 +3,7 @@ class ServiceOrdersController < ApplicationController
   before_action :authenticate_agent!, only: %i[index show]
   before_action :authenticate_admin!, only: %i[new create]
   before_action :authenticate_user!, only: %i[set_vehicle accept]
-  before_action :set_service_order, only: %i[show set_vehicle accept]
+  before_action :set_service_order, only: %i[show set_vehicle accept reject]
 
   def new
     @quote = [Quote.find_by(code: params[:q])]
@@ -63,6 +63,12 @@ class ServiceOrdersController < ApplicationController
       flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end
+  end
+
+  def reject
+    @service_order.rejected!
+    flash[:success] = 'Ordem de Serviço rejeitada!'
+    redirect_to @service_order
   end
 
   private
