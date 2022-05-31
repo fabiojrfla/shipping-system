@@ -1,0 +1,30 @@
+<h2>Veículos</h2>
+<% if @vehicles.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano de Fabricação</th>
+        <th>Capacidade Máxima (kg)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= vehicle.license_plate %></td>
+        <td><%= vehicle.make %></td>
+        <td><%= vehicle.model %></td>
+        <td><%= vehicle.year %></td>
+        <td><%= vehicle.max_load %>kg</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem veículos cadastrados</p>
+<% end %>
+<div>
+  <%= link_to 'Novo Veículo', new_vehicle_path %>
+</div>

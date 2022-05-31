@@ -1,6 +1,11 @@
 <h2>Ordens de Serviço</h2>
 <% if @pending_service_orders.empty? %>
-  <p>Não existem ordens de serviço criadas</p>
+  <% if admin_signed_in? %>
+    <p>Não existem ordens de serviço criadas</p>
+  <% end %>
+  <% if user_signed_in? %>
+    <p>Nenhuma ordem de serviço</p>
+  <% end %>
 <% else %>
   <% if @pending_service_orders.any? %>
     <section id="pending-service-orders">

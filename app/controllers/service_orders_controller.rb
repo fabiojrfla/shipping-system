@@ -1,4 +1,8 @@
 class ServiceOrdersController < ApplicationController
+  devise_group :agent, contains: %i[user admin]
+  before_action :authenticate_agent!, only: %i[index show]
+  before_action :authenticate_admin!, only: %i[new create]
+
   def new
     @quote = [Quote.find_by(code: params[:q])]
     @shipping_company = [@quote.first.shipping_company]
@@ -14,8 +18,8 @@ class ServiceOrdersController < ApplicationController
       flash[:success] = 'Ordem de Serviço criada com sucesso!'
       redirect_to @service_order
     else
-      @quote = [Quote.find(@service_order.quote_id)]
-      @shipping_company = [ShippingCompany.find(@service_order.shipping_company_id)]
+      @quote = [@service_order.quote]
+      @shipping_company = [@service_order.shipping_company]
       flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end

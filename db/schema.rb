@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_30_203616) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_044330) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name"
     t.string "street_number"
@@ -148,6 +148,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_203616) do
     t.index ["shipping_company_id"], name: "index_users_on_shipping_company_id"
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.string "license_plate"
+    t.string "make"
+    t.string "model"
+    t.integer "year"
+    t.integer "max_load"
+    t.integer "shipping_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_company_id"], name: "index_vehicles_on_shipping_company_id"
+  end
+
   add_foreign_key "min_shipping_prices", "shipping_companies"
   add_foreign_key "quotes", "items"
   add_foreign_key "quotes", "shipping_companies"
@@ -157,4 +169,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_203616) do
   add_foreign_key "shipping_deadlines", "shipping_companies"
   add_foreign_key "shipping_prices", "shipping_companies"
   add_foreign_key "users", "shipping_companies"
+  add_foreign_key "vehicles", "shipping_companies"
 end

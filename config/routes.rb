@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     get 'generated', on: :collection
   end
   resources :service_orders, only: %i[new create show index]
+  resources :vehicles, only: %i[index new create]
 end

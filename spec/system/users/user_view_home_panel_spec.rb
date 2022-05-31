@@ -13,8 +13,10 @@ describe 'Usuário vê painel inicial' do
 
     expect(page).to have_content 'Painel'
     expect(page).to have_content 'Transportadora: TransLight'
+    expect(page).to have_link 'Ordens de Serviço'
     expect(page).to have_link 'Tabela de Preços'
     expect(page).to have_link 'Tabela de Prazos'
+    expect(page).to have_link 'Veículos'
   end
 
   it 'com status da sua transportadora' do

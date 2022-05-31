@@ -46,7 +46,6 @@ describe 'Administrador vê Ordens de Serviço' do
       expect(page).to have_content 'Transportadora'
       expect(page).to have_content 'TExpress'
       expect(page).to have_link second_so.code
-      expect(page).to have_content 'TExpress'
     end
     expect(page).not_to have_css 'section#accepted-service-orders'
     expect(page).not_to have_content 'Não existem ordens de serviço criadas'

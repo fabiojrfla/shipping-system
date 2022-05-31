@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê Ordens de Serviço pendentes' do
   it 'no painel inicial' do
     sc = ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
-                                 brand_name: 'TransLight', email: 'contato@translight.com.br', status: 'inactive',
+                                 brand_name: 'TransLight', email: 'contato@translight.com.br',
                                  street_name: 'Avenida Alberto Maranhão', street_number: '100',
                                  complement: 'Galpão 10', district: 'Centro', city: 'Fortaleza', state: 'CE',
                                  postal_code: '60010010')
@@ -51,10 +51,10 @@ describe 'Usuário vê Ordens de Serviço pendentes' do
 
   it 'e não há Ordens de Serviço pendentes' do
     ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
-                                 brand_name: 'TransLight', email: 'contato@translight.com.br', status: 'inactive',
-                                 street_name: 'Avenida Alberto Maranhão', street_number: '100',
-                                 complement: 'Galpão 10', district: 'Centro', city: 'Fortaleza', state: 'CE',
-                                 postal_code: '60010010')
+                            brand_name: 'TransLight', email: 'contato@translight.com.br',
+                            street_name: 'Avenida Alberto Maranhão', street_number: '100',
+                            complement: 'Galpão 10', district: 'Centro', city: 'Fortaleza', state: 'CE',
+                            postal_code: '60010010')
     user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
 
     login_as(user, scope: :user)
