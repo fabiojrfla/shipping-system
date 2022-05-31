@@ -10,8 +10,8 @@ RSpec.describe ServiceOrder, type: :model do
                                    postal_code: '59000000')
       item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
       quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-      ServiceOrder.create!(quote:)
-      service_order = ServiceOrder.new(quote:)
+      ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
+      service_order = ServiceOrder.new(quote:, shipping_company: quote.shipping_company)
 
       service_order.valid?
 
@@ -28,7 +28,7 @@ RSpec.describe ServiceOrder, type: :model do
                                    postal_code: '59000000')
       item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
       quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-      service_order = ServiceOrder.create!(quote:)
+      service_order = ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
 
       expect(service_order.pending?).to eq true
     end
@@ -41,7 +41,7 @@ RSpec.describe ServiceOrder, type: :model do
                                    postal_code: '59000000')
       item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
       quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-      service_order = ServiceOrder.create!(quote:)
+      service_order = ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
 
       service_order.accepted!
 
@@ -58,7 +58,7 @@ RSpec.describe ServiceOrder, type: :model do
                                    postal_code: '59000000')
       item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
       quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-      service_order = ServiceOrder.new(quote:)
+      service_order = ServiceOrder.new(quote:, shipping_company: quote.shipping_company)
 
       service_order.save!
       result = service_order.code
@@ -76,8 +76,8 @@ RSpec.describe ServiceOrder, type: :model do
       item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
       first_quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
       second_quote = Quote.create!(item:, shipping_company: sc, price: 225, deadline: 5)
-      first_service_order = ServiceOrder.create!(quote: first_quote)
-      second_service_order = ServiceOrder.new(quote: second_quote)
+      first_service_order = ServiceOrder.create!(quote: first_quote, shipping_company: first_quote.shipping_company)
+      second_service_order = ServiceOrder.new(quote: second_quote, shipping_company: second_quote.shipping_company)
 
       second_service_order.save!
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_30_042118) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_203616) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name"
     t.string "street_number"
@@ -88,7 +88,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_042118) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 5
+    t.integer "shipping_company_id", null: false
     t.index ["quote_id"], name: "index_service_orders_on_quote_id"
+    t.index ["shipping_company_id"], name: "index_service_orders_on_shipping_company_id"
   end
 
   create_table "shipping_companies", force: :cascade do |t|
@@ -151,6 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_042118) do
   add_foreign_key "quotes", "shipping_companies"
   add_foreign_key "remittees", "service_orders"
   add_foreign_key "service_orders", "quotes"
+  add_foreign_key "service_orders", "shipping_companies"
   add_foreign_key "shipping_deadlines", "shipping_companies"
   add_foreign_key "shipping_prices", "shipping_companies"
   add_foreign_key "users", "shipping_companies"

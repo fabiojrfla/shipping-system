@@ -1,27 +1,12 @@
 <h2>Ordens de Serviço</h2>
-<section id="service-orders-pending">
-  <h3>Aceitas</h3>
-  <% if @service_orders_pending.any? %>
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Código</th>
-          <th>Item</th>
-          <th>Transportadora</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @service_orders_pending.each do |service_order| %>
-        <tr>
-          <td><%= l(service_order.created_at.to_date) %></td>
-          <td><%= link_to service_order.code, service_order %></td>
-          <td><%= service_order.quote.item.sku %></td>
-          <td><%= service_order.quote.shipping_company.brand_name %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+<% if @pending_service_orders.empty? %>
+  <p>Não existem ordens de serviço criadas</p>
+<% else %>
+  <% if @pending_service_orders.any? %>
+    <section id="pending-service-orders">
+      <h3>Pendentes</h3>
+      <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @pending_service_orders } %>
+    </section>
   <% end %>
-</section>
+<% end %>
 

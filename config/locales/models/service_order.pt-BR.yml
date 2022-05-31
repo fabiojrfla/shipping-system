@@ -5,3 +5,4 @@ pt-BR:
     attributes:
       service_order:
         quote_id: 'Cotação'
+        shipping_company_id: 'Transportadora'

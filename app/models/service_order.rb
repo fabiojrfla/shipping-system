@@ -1,5 +1,6 @@
 class ServiceOrder < ApplicationRecord
   belongs_to :quote
+  belongs_to :shipping_company
   has_one :address, as: :addressable
   has_one :remittee
   accepts_nested_attributes_for :address, :remittee

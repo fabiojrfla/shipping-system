@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'Administrador vê Ordens de Serviço' do
-  it 'com sucesso' do
-    admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
-                          password: 'whatshisname')
-    sc = ShippingCompany.create!(registration_number: '12345678000102', corporate_name: 'Transporte Expresso LTDA',
-                                 brand_name: 'TExpress', email: 'contato@texpress.com.br',
-                                 street_name: 'Avenida Felipe Camarão', street_number: '100', complement: 'Galpão 10',
-                                 district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
+describe 'Usuário vê Ordens de Serviço pendentes' do
+  it 'no painel inicial' do
+    sc = ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
+                                 brand_name: 'TransLight', email: 'contato@translight.com.br', status: 'inactive',
+                                 street_name: 'Avenida Alberto Maranhão', street_number: '100',
+                                 complement: 'Galpão 10', district: 'Centro', city: 'Fortaleza', state: 'CE',
+                                 postal_code: '60010010')
+    user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
     item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
     first_quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
     second_quote = Quote.create!(item:, shipping_company: sc, price: 225, deadline: 5)
@@ -29,12 +29,11 @@ describe 'Administrador vê Ordens de Serviço' do
                     district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010',
                     addressable: second_remittee)
 
-    login_as(admin, scope: :admin)
-    visit admin_root_path
-    click_on 'Ordens de Serviço'
+    login_as(user, scope: :user)
+    visit user_root_path
 
-    within('h2') do
-      expect(page).to have_content 'Ordens de Serviço'
+    within('h3') do
+      expect(page).to have_content 'Ordens de Serviço pendentes'
     end
     within('table') do
       expect(page).to have_content 'Data'
@@ -44,25 +43,24 @@ describe 'Administrador vê Ordens de Serviço' do
       expect(page).to have_content 'Item'
       expect(page).to have_content 'UGGBBPUR06'
       expect(page).to have_content 'Transportadora'
-      expect(page).to have_content 'TExpress'
+      expect(page).to have_content 'TransLight'
       expect(page).to have_link second_so.code
-      expect(page).to have_content 'TExpress'
     end
-    expect(page).not_to have_css 'section#accepted-service-orders'
-    expect(page).not_to have_content 'Não existem ordens de serviço criadas'
+    expect(page).not_to have_content 'Não há ordens de serviço pendentes'
   end
 
-  it 'e não existem ordens de serviço criadas' do
-    admin = Admin.create!(name: 'Vito', surname: 'Corleone', email: 'vito@sistemadefrete.com.br',
-                          password: 'whatshisname')
+  it 'e não há Ordens de Serviço pendentes' do
+    ShippingCompany.create!(registration_number: '98765432000198', corporate_name: 'Light Transportes LTDA',
+                                 brand_name: 'TransLight', email: 'contato@translight.com.br', status: 'inactive',
+                                 street_name: 'Avenida Alberto Maranhão', street_number: '100',
+                                 complement: 'Galpão 10', district: 'Centro', city: 'Fortaleza', state: 'CE',
+                                 postal_code: '60010010')
+    user = User.create!(name: 'Walter', surname: 'White', email: 'walter@translight.com.br', password: 'saymyname')
 
-    login_as(admin, scope: :admin)
-    visit admin_root_path
-    click_on 'Ordens de Serviço'
+    login_as(user, scope: :user)
+    visit user_root_path
 
-    expect(page).to have_content 'Não existem ordens de serviço criadas'
-    expect(page).not_to have_content 'Pendentes'
-    expect(page).not_to have_content 'Aceitas'
+    expect(page).to have_content 'Não há ordens de serviço pendentes'
     expect(page).not_to have_css 'table'
   end
 end

@@ -14,4 +14,8 @@ class ShippingCompany < ApplicationRecord
   validates :registration_number, length: { is: 14 }
   validates :state, length: { is: 2 }
   validates :postal_code, length: { is: 8 }
+
+  def full_description
+    "#{registration_number} - #{corporate_name}"
+  end
 end

@@ -2,8 +2,10 @@
 <span>[<%= t(@service_order.status) %>]</span>
 <div>
   <dl>
-    <dt><strong>Data</strong></dt>
+    <dt><strong>Data:</strong></dt>
     <dd><%= l(@service_order.created_at.to_date) %></dd>
+    <dt><strong>Transportadora:</strong></dt>
+    <dd><%= @service_order.shipping_company.full_description %></dd>
     <div id="item">
       <h3>Item <%= @service_order.quote.item.sku %></h3>
       <dt><strong>Dimensões:</strong></dt>

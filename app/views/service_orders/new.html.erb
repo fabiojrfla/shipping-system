@@ -12,6 +12,10 @@
     <%= f.label :quote_id %>
     <%= f.collection_select :quote_id, @quote, :id, :code %>
   </div>
+  <div>
+    <%= f.label :shipping_company_id %>
+    <%= f.collection_select :shipping_company_id, @shipping_company, :id, :full_description %>
+  </div>
   <div id="remitter">
     <h3>Endereço para retirada</h3>
     <%= f.fields_for :address do |address_f| %>

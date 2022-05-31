@@ -1,6 +1,7 @@
 class ServiceOrdersController < ApplicationController
   def new
     @quote = [Quote.find_by(code: params[:q])]
+    @shipping_company = [@quote.first.shipping_company]
     @service_order = ServiceOrder.new
     @service_order.build_address
     remittee = @service_order.build_remittee
@@ -14,6 +15,7 @@ class ServiceOrdersController < ApplicationController
       redirect_to @service_order
     else
       @quote = [Quote.find(@service_order.quote_id)]
+      @shipping_company = [ShippingCompany.find(@service_order.shipping_company_id)]
       flash.now[:error] = 'Dados inválidos...'
       render 'new'
     end
@@ -24,7 +26,7 @@ class ServiceOrdersController < ApplicationController
   end
 
   def index
-    @service_orders_pending = ServiceOrder.where(status: 'pending').order(created_at: :desc)
+    @pending_service_orders = ServiceOrder.where(status: 'pending').order(created_at: :desc)
   end
 
   private
@@ -32,7 +34,7 @@ class ServiceOrdersController < ApplicationController
   def service_order_params
     params
       .require(:service_order)
-      .permit(:quote_id,
+      .permit(:quote_id, :shipping_company_id,
               address_attributes: %i[street_name street_number complement district city state postal_code],
               remittee_attributes: [:id_number, :name, :surname,
                                     { address_attributes: %i[street_name street_number complement district city state

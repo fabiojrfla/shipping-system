@@ -20,6 +20,7 @@ describe 'Administrador cria uma ordem de serviço' do
       expect(page).to have_content 'Nova Ordem de Serviço'
     end
     expect(page).to have_select 'Cotação'
+    expect(page).to have_select 'Transportadora'
     within('div#remitter') do
       expect(page).to have_content 'Endereço para retirada'
       expect(page).to have_field 'Logradouro'
@@ -89,6 +90,7 @@ describe 'Administrador cria uma ordem de serviço' do
     expect(page).to have_content 'Ordem de Serviço AVV3YOWH08M'
     expect(page).to have_content '[Pendente]'
     expect(page).to have_content I18n.l(Time.current.to_date)
+    expect(page).to have_content '12345678000102 - Transporte Expresso LTDA'
     expect(page).to have_content 'UGGBBPUR06'
     expect(page).to have_content '70 x 50 x 90cm'
     expect(page).to have_content '5kg'

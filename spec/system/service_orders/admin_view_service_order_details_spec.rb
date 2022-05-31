@@ -10,7 +10,7 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
                                  district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
     item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
     quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-    so = ServiceOrder.create!(quote:)
+    so = ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
     Address.create!(street_name: 'Avenida Rio Branco', street_number: '100', complement: 'Galpão 30',
                     district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010', addressable: so)
     remittee = Remittee.create!(id_number: '341327200', name: 'Charlie', surname: 'Chaplin', service_order: so)
@@ -28,6 +28,8 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
     expect(page).to have_content '[Pendente]'
     expect(page).to have_content 'Data'
     expect(page).to have_content I18n.l(Time.current.to_date)
+    expect(page).to have_content 'Transportadora'
+    expect(page).to have_content '12345678000102 - Transporte Expresso LTDA'
     within('div#item') do
       expect(page).to have_content 'Item UGGBBPUR06'
       expect(page).to have_content 'Dimensões: 70 x 50 x 90cm'
@@ -55,7 +57,7 @@ describe 'Administrador vê detalhes de uma Ordem de Serviço' do
                                  district: 'Industrial', city: 'Mossoró', state: 'RN', postal_code: '59000000')
     item = Item.create!(sku: 'UGGBBPUR06', height: 70, width: 50, length: 90, weight: 5)
     quote = Quote.create!(item:, shipping_company: sc, price: 250, deadline: 4)
-    so = ServiceOrder.create!(quote:)
+    so = ServiceOrder.create!(quote:, shipping_company: quote.shipping_company)
     Address.create!(street_name: 'Avenida Rio Branco', street_number: '100', complement: 'Galpão 30',
                                     district: 'Centro', city: 'Mossoró', state: 'RN', postal_code: '59000010',
                                     addressable: so)

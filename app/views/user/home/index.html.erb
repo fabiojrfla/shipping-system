@@ -12,3 +12,11 @@
     </ul>
   </div>
 </section>
+<section>
+  <h3>Ordens de Serviço pendentes</h3>
+  <% if @pending_service_orders.any? %>
+    <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @pending_service_orders } %>
+  <% else %>
+    <p>Não há ordens de serviço pendentes</p>
+  <% end %>
+</section>
