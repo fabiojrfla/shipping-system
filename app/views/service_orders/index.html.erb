@@ -1,5 +1,5 @@
 <h2>Ordens de Serviço</h2>
-<% if @pending_service_orders.empty? && @accepted_service_orders.empty? && @rejected_service_orders.empty? %>
+<% if @pending_service_orders.empty? && @service_orders.empty? %>
   <% if admin_signed_in? %>
     <p>Não existem ordens de serviço criadas</p>
   <% end %>
@@ -13,16 +13,10 @@
       <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @pending_service_orders } %>
     </section>
   <% end %>
-  <% if @accepted_service_orders.any? %>
-    <section id="accepted-service-orders">
-      <h3>Aceitas</h3>
-      <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @accepted_service_orders } %>
-    </section>
-  <% end %>
-  <% if @rejected_service_orders.any? %>
-    <section id="rejected-service-orders">
-      <h3>Rejeitadas</h3>
-      <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @rejected_service_orders } %>
+  <% if @service_orders.any? %>
+    <section id="processed-service-orders">
+      <h3>Processadas</h3>
+      <%= render partial: 'shared/service_orders/service_orders', locals: { service_orders: @service_orders } %>
     </section>
   <% end %>
 <% end %>

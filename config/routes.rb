@@ -9,8 +9,10 @@ Rails.application.routes.draw do
     root to: 'home#index'
   end
   resources :shipping_companies, only: %i[index new create show] do
-    patch 'deactivate', on: :member
-    patch 'activate', on: :member
+    member do
+      patch 'deactivate'
+      patch 'activate'
+    end
   end
   resources :shipping_prices, only: %i[index new create]
   resources :min_shipping_prices, only: %i[new create]
@@ -20,10 +22,13 @@ Rails.application.routes.draw do
     get 'generated', on: :collection
   end
   resources :service_orders, only: %i[new create show index] do
-    get 'set_vehicle', on: :member
-    patch 'accept', on: :member
-    patch 'reject', on: :member
+    member do
+      get 'set_vehicle'
+      patch 'accept'
+      patch 'reject'
+    end
     resources :route_updates, only: %i[index create]
+    get 'tracking', on: :collection
   end
   resources :vehicles, only: %i[index new create]
 end

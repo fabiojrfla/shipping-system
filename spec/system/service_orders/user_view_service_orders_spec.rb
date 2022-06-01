@@ -62,7 +62,7 @@ describe 'Usuário vê Ordens de Serviço' do
     expect(page).not_to have_content 'Transportadora'
     expect(page).not_to have_content 'TransLight'
     expect(page).not_to have_content 'TExpress'
-    expect(page).not_to have_css 'section#accepted-service-orders'
+    expect(page).not_to have_css 'section#processed-service-orders'
     expect(page).not_to have_content 'Nenhuma ordem de serviço'
   end
 
@@ -120,23 +120,15 @@ describe 'Usuário vê Ordens de Serviço' do
       expect(page).not_to have_content 'Transportadora'
       expect(page).not_to have_content 'TransLight'
     end
-    within('section#accepted-service-orders') do
-      expect(page).to have_content 'Aceitas'
+    within('section#processed-service-orders') do
+      expect(page).to have_content 'Processadas'
       expect(page).to have_content 'Código'
       expect(page).to have_link second_so.code
       expect(page).to have_content 'Item'
       expect(page).to have_content 'BFGBBPUR08'
       expect(page).not_to have_content 'Transportadora'
       expect(page).not_to have_content 'TransLight'
-    end
-    within('section#rejected-service-orders') do
-      expect(page).to have_content 'Rejeitadas'
-      expect(page).to have_content 'Código'
       expect(page).to have_link first_so.code
-      expect(page).to have_content 'Item'
-      expect(page).to have_content 'UGGBBPUR06'
-      expect(page).not_to have_content 'Transportadora'
-      expect(page).not_to have_content 'TransLight'
     end
   end
 
@@ -154,8 +146,7 @@ describe 'Usuário vê Ordens de Serviço' do
     expect(page).to have_content 'Nenhuma ordem de serviço'
     expect(page).not_to have_content 'Não existem ordens de serviço criadas'
     expect(page).not_to have_content 'Pendentes'
-    expect(page).not_to have_content 'Aceitas'
-    expect(page).not_to have_content 'Rejeitadas'
+    expect(page).not_to have_content 'Processadas'
     expect(page).not_to have_css 'table'
   end
 end

@@ -25,7 +25,7 @@
         <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Página inicial', root_path %> |
-        <%= link_to 'Rastreamento', root_path %> |
+        <%= link_to 'Rastreamento', tracking_service_orders_path %> |
         <%= link_to 'Sou Transportadora', new_user_session_path %> |
         <%= link_to 'Sou Administrador',  new_admin_session_path %>
       <% end %>

@@ -36,15 +36,12 @@ class ServiceOrdersController < ApplicationController
   def index
     if admin_signed_in?
       @pending_service_orders = ServiceOrder.where(status: 'pending').order(created_at: :desc)
-      @accepted_service_orders = ServiceOrder.where(status: 'accepted').order(created_at: :desc)
-      @rejected_service_orders = ServiceOrder.where(status: 'rejected').order(created_at: :desc)
+      @service_orders = ServiceOrder.where.not(status: 'pending').order(created_at: :desc)
     elsif user_signed_in?
       @pending_service_orders = ServiceOrder.where(status: 'pending', shipping_company: current_user.shipping_company)
                                             .order(created_at: :desc)
-      @accepted_service_orders = ServiceOrder.where(status: 'accepted', shipping_company: current_user.shipping_company)
-                                             .order(created_at: :desc)
-      @rejected_service_orders = ServiceOrder.where(status: 'rejected', shipping_company: current_user.shipping_company)
-                                             .order(created_at: :desc)
+      @service_orders = ServiceOrder.where('shipping_company_id = ? AND NOT status = ?',
+                                           current_user.shipping_company_id, 5).order(created_at: :desc)
     end
   end
 
@@ -69,6 +66,16 @@ class ServiceOrdersController < ApplicationController
     @service_order.rejected!
     flash[:success] = 'Ordem de Serviço rejeitada!'
     redirect_to @service_order
+  end
+
+  def tracking
+    return unless params[:tracking]
+
+    @service_order = ServiceOrder.find_by(code: params[:tracking])
+    return if @service_order
+
+    flash.now[:error] = 'O código não foi encontrado...'
+    render 'tracking'
   end
 
   private

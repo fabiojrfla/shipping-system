@@ -1,0 +1,26 @@
+<h2>Rastreamento</h2>
+<div>
+  <%= form_with url: tracking_service_orders_path, method: :get do |f| %>
+    <div>
+      <%= f.label :tracking, 'Código de rastreamento' %>
+      <%= f.text_field :tracking %>
+    </div>
+    <div>
+      <%= f.submit 'Rastrear' %>
+    </div>
+  <% end %>
+</div>
+<% if @service_order %>
+  <div>
+    <h3>Ordem de Serviço: <%= @service_order.code %></h3>
+    <dl>
+      <dt><strong>Origem:</strong></dt>
+      <dd><%= @service_order.address.full_address %></dd>
+      <dt><strong>Destino:</strong></dt>
+      <dd><%= @service_order.remittee.address.full_address %></dd>
+      <dt><strong>Transportado por:</strong></dt>
+      <dd><%= @service_order.vehicle.full_description %></dd>
+    </dl>
+    <%= render 'shared/service_orders/route_updates' %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Descrição</th>
+      <th>Local</th>
+      <th>Cidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @service_order.route_updates.each do |route_update| %>
+      <% next unless route_update.persisted? %>
+    <tr>
+      <td><%= l(route_update.created_at.in_time_zone('Brasilia'), format: :short) %></td>
+      <td><%= route_update.description %></td>
+      <td><%= route_update.place_name %></td>
+      <td><%= route_update.city %>/<%= route_update.state %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
