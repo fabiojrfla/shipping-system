@@ -1,0 +1,66 @@
+<section>
+  <h2>Atualizações de Rota</h2>
+  <% if @route_update.try(:errors).try(:any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @route_update.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  <%= form_for @service_order, url: service_order_route_updates_path, method: :post do |f| %>
+    <div>
+      <h3>Ordem de Serviço</h3>
+      <%= f.label :status %>
+      <%= f.select :status, [['Em trânsito', 'in_transit'], ['Finalizada', 'finished']] %>
+    </div>
+    <div>
+      <h3>Nova Atualização de Rota</h3>
+      <%= f.fields_for :route_updates do |ff| %>
+        <% next if ff.object.persisted? %>
+        <div>
+          <%= ff.label :description %>
+          <%= ff.select :description, ['Item enviado', 'Item recebido', 'Saiu para entrega', 'Entregue'], required: true %>
+        </div>
+        <div>
+          <%= ff.label :place_name %>
+          <%= ff.text_field :place_name %>
+        </div>
+        <div>
+          <%= ff.label :city %>
+          <%= ff.text_field :city %>
+        </div>
+        <div>
+          <%= ff.label :state %>
+          <%= ff.text_field :state %>
+        </div>
+      <% end %>
+      <div>
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>
+</section>
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Local</th>
+        <th>Cidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_order.route_updates.each do |route_update| %>
+        <% next unless route_update.persisted? %>
+      <tr>
+        <td><%= l(route_update.created_at.in_time_zone('Brasilia'), format: :short) %></td>
+        <td><%= route_update.description %></td>
+        <td><%= route_update.place_name %></td>
+        <td><%= route_update.city %>/<%= route_update.state %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

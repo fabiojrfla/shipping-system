@@ -15,3 +15,5 @@ pt-BR:
     other: 'dias úteis'
   rejected: 'Rejeitada'
   accepted: 'Aceita'
+  in_transit: 'Em trânsito'
+  finished: 'Finalizada'

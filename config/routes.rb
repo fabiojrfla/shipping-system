@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'set_vehicle', on: :member
     patch 'accept', on: :member
     patch 'reject', on: :member
+    resources :route_updates, only: %i[index create]
   end
   resources :vehicles, only: %i[index new create]
 end

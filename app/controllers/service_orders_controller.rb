@@ -50,7 +50,7 @@ class ServiceOrdersController < ApplicationController
 
   def set_vehicle
     redirect_to root_path if current_user.shipping_company != @service_order.shipping_company
-    @vehicles = current_user.shipping_company.vehicles
+    @vehicles = current_user.shipping_company.vehicles.order(:license_plate)
   end
 
   def accept

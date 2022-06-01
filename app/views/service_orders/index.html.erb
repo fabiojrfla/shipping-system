@@ -1,5 +1,5 @@
 <h2>Ordens de Serviço</h2>
-<% if @pending_service_orders.empty? %>
+<% if @pending_service_orders.empty? && @accepted_service_orders.empty? && @rejected_service_orders.empty? %>
   <% if admin_signed_in? %>
     <p>Não existem ordens de serviço criadas</p>
   <% end %>

@@ -38,10 +38,14 @@
     <% end %>
   </dl>
 </div>
-<% if user_signed_in? && @service_order.pending?%>
+<% if user_signed_in? %>
   <div>
-    <%= link_to 'Aceitar Ordem de Serviço', set_vehicle_service_order_path(@service_order) %>
-    <%= button_to 'Rejeitar Ordem de Serviço', reject_service_order_path(@service_order), method: :patch %>
+    <% if @service_order.pending? %>
+      <%= link_to 'Aceitar Ordem de Serviço', set_vehicle_service_order_path(@service_order) %>
+      <%= button_to 'Rejeitar Ordem de Serviço', reject_service_order_path(@service_order), method: :patch %>
+    <% elsif @service_order.accepted? %>
+      <%= link_to 'Atualizações de Rota', service_order_route_updates_path(@service_order) %>
+    <% end %>
   </div>
 <% end %>
 <div>

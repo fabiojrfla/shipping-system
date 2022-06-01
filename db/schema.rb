@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_31_152419) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_234237) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name"
     t.string "street_number"
@@ -80,6 +80,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_152419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["service_order_id"], name: "index_remittees_on_service_order_id"
+  end
+
+  create_table "route_updates", force: :cascade do |t|
+    t.string "description"
+    t.string "place_name"
+    t.string "city"
+    t.string "state"
+    t.integer "service_order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_order_id"], name: "index_route_updates_on_service_order_id"
   end
 
   create_table "service_orders", force: :cascade do |t|
@@ -166,6 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_152419) do
   add_foreign_key "quotes", "items"
   add_foreign_key "quotes", "shipping_companies"
   add_foreign_key "remittees", "service_orders"
+  add_foreign_key "route_updates", "service_orders"
   add_foreign_key "service_orders", "quotes"
   add_foreign_key "service_orders", "shipping_companies"
   add_foreign_key "service_orders", "vehicles"
